@@ -75,6 +75,11 @@ else()
 endif()
 
 set(pythonic_include_directories ${actual_pythonic_dir})
-message("Found Pythonic include directories here: ${pythonic_include_directories}")
+
+find_package(Json REQUIRED)
+list(APPEND pythonic_include_directories ${Json_include_directories})
+message("Pythonic include directories are: ${pythonic_include_directories}")
+
+
 
 message(STATUS "Pythonic configuring done.")
