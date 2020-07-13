@@ -18,6 +18,6 @@ inline void date_test() {
 	auto today = system_clock::now();
 	std::cout << today << '\n';
 	std::invoke([](){});
-	std::exception_ptr e = std::make_exception_ptr(std::bad_alloc());
-	std::future_category()
+	std::exception_ptr ex = std::make_exception_ptr(std::bad_alloc());
+	// std::future_category();
 }

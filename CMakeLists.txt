@@ -120,19 +120,24 @@ set(PYTHONIC_SOURCES pythonic.h
 
         geometry/circle.cpp geometry/circle.h n_dim/nd_point.h displaying/type_printer.h other/Counter.h timing/delayed_launcher.h timing/task_scheduler.h)
 
-# message("${PYTHONIC_SOURCES}")
 
+# message("${PYTHONIC_SOURCES}")
 # ADD_MSVC_PRECOMPILED_HEADER("pch.h" "pch.cpp" PYTHONIC_SOURCES)
 
-add_library(pythonic
-        ${PYTHONIC_SOURCES})
-
+add_library(pythonic ${PYTHONIC_SOURCES})
 
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 
-include(cotire)
+# set(Json_DIR D:/lib/json)
+find_package(Json REQUIRED)
+include_directories(${Json_include_directories})
 
+include(cotire)
 cotire(pythonic)
+
+
+
+## Project with tests:
 
 project(pythonic_test)
 set_target_properties(pythonic PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "pch.h")
@@ -143,6 +148,8 @@ include_directories(pythonic_test tests)
 add_executable(pythonic_test
 
         tests/main.cpp
+
+
         tests/encoding_tests/simple_encoding_tests.h
 
         tests/encoding_tests/fs_test.h
@@ -153,7 +160,17 @@ add_executable(pythonic_test
         tests/encoding_tests/cp1251_tests.h
 
         tests/encoding_tests/auto_decode_tests.h
-        tests/json_and_plot_test.h tests/smoothing_test.h tests/nd_test.h tests/python_test.h tests/random_tests.h tests/stl_tests.h tests/other_tests.h tests/date_test.h)
+        tests/json_and_plot_test.h
+        tests/smoothing_test.h
+        tests/nd_test.h
+        tests/python_test.h
+        tests/random_tests.h
+        tests/stl_tests.h
+        tests/other_tests.h
+        tests/date_test.h
+
+
+)
 
 
 
@@ -161,5 +178,5 @@ target_link_libraries(pythonic_test pythonic)
 
 
 
-print_target_libraries(pythonic)
-print_target_libraries(pythonic_test)
+# print_target_libraries(pythonic)
+# print_target_libraries(pythonic_test)

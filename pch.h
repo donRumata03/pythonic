@@ -72,7 +72,7 @@
 
 #include "windows.h"
 
-#include "D:/Cpp_Libs/json/json.hpp"
+#include <json.hpp>
 
 using namespace std::string_literals;
 using namespace std::chrono_literals;

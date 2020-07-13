@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include <D:/Cpp_Libs/json/json.hpp>
+#include <json.hpp>
 
 #include "plotting/plotter.h"
 #include "maths/numpyic.h"
