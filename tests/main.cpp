@@ -15,7 +15,7 @@
 #include "random_tests.h"
 #include "stl_tests.h"
 #include "other_tests.h"
-#include "date_test.h"
+#include "timing_tests.h"
 
 #include <json_and_plot_test.h>
 
@@ -102,12 +102,12 @@ int main()
 	// test_probability_choice();
 	// test_random();
 	// test_parallel_for_each();
+	test_copying_to();
 
+	/// Timing
 	// test_delayed_launch();
-
 	// test_task_scheduler();
-
-	date_test();
+	// date_test();
 
 	return 0;
 }

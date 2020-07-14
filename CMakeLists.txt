@@ -167,7 +167,7 @@ add_executable(pythonic_test
         tests/random_tests.h
         tests/stl_tests.h
         tests/other_tests.h
-        tests/date_test.h
+        tests/timing_tests.h
 
 
 )

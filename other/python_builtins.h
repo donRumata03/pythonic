@@ -213,3 +213,33 @@ template <class T, class E> std::ostream& operator<< (std::ostream& out, const p
 std::vector<std::pair<double, double>> zip(const std::vector<double> &vec1, const std::vector<double> &vec2);
 std::pair<std::vector<double>, std::vector<double>> unzip(const std::vector<std::pair<double, double>>& pair_vector);
 
+
+
+/// Copy_to: moves all elements of the given container to the container of type given as Template parameter:
+
+/**
+ *
+ * @usage:
+ * @code
+ * std::vector<double> values = { 1., 4.6, 7, 34.65 };
+ * auto new_set = copy_to<std::unordered_set<double>>(values);
+ * @endcode
+ */
+template<class Output_container_t, class Input_container_t>
+typename std::enable_if<std::is_same<typename Output_container_t::value_type, typename Input_container_t::value_type>::value, Output_container_t>::type
+        copy_to (Input_container_t& input_container) {
+	using T = Input_container_t::value_type;
+
+	// std::remove_const_t<Output_container_t> res(input_container.size());
+	Output_container_t res(input_container.begin(), input_container.end());
+
+	// std::copy(input_container.begin(), input_container.end(), std::begin(res));
+
+	std::cout << type_name<decltype(res)>() << std::endl;
+
+	/*for () {
+
+	}*/
+
+	return res;
+}
