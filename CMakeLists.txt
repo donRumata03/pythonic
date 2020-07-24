@@ -118,7 +118,7 @@ set(PYTHONIC_SOURCES pythonic.h
         timing/Timer.cpp
         timing/Timer.h
 
-        geometry/circle.cpp geometry/circle.h n_dim/nd_point.h displaying/type_printer.h other/Counter.h timing/delayed_launcher.h timing/task_scheduler.h)
+        geometry/circle.cpp geometry/circle.h n_dim/nd_point.h displaying/type_printer.h other/Counter.h timing/delayed_launcher.h timing/task_scheduler.h n_dim/nd_array.inl.h)
 
 
 # message("${PYTHONIC_SOURCES}")

@@ -94,8 +94,8 @@ inline void nd_for_eaches_test(){
 
 }
 
-inline void test_sum(){
-	nd_array<double> arr({3, 3, 3});
+inline void test_nd_array_sum(){
+	nd_array<double> arr({3, 3, 4});
 
 	arr.fill(1);
 

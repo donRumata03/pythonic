@@ -87,12 +87,12 @@ int main()
 
 	/// ND:
 	// nd_point_test();
-	nd_indexing_test();
+	// nd_indexing_test();
 	// nd_get_points_test();
 	// print_nd_array_test();
 	// nd_slicing_test();
 	// nd_for_eaches_test();
-	// test_sum();
+	test_nd_array_sum();
 
 	/// Smoothing
 	// test_smoothing();
