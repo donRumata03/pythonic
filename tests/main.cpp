@@ -81,6 +81,7 @@ int main()
 	/// Python:
 	// test_splitting();
 	// circle_test();
+	test_point_index_operator();
 	// cut_tests();
 	// test_mult();
 
@@ -102,7 +103,7 @@ int main()
 	// test_probability_choice();
 	// test_random();
 	// test_parallel_for_each();
-	test_copying_to();
+	// test_copying_to();
 
 	/// Timing
 	// test_delayed_launch();

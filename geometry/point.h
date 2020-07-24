@@ -19,6 +19,8 @@ struct point
 	point(const point& other) = default;
 
 	friend bool operator == (const point& p1, const point& p2);
+	double& operator[] (size_t index) { assert(index == 0 || index == 1); return reinterpret_cast<double*>(this)[index]; }
+	const double& operator[] (size_t index) const { return const_cast<const double&>(const_cast<point*>(this)->operator[](index)); }
 
 	friend std::ostream &operator<<(std::ostream &os, const point &point);
 

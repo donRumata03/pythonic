@@ -4,25 +4,32 @@
 
 #pragma once
 
-#include <chrono>
-#include <string>
+#include "pch.h"
 
-using namespace std::chrono_literals;
-using namespace std::chrono;
+// using namespace std::chrono_literals;
+// using namespace std::chrono;
 
 class Timer {
 private:
 	std::string message;
-	time_point<std::chrono::high_resolution_clock> start, end;
-	duration<double> dur;
-	bool printing;
+	chrono::time_point<std::chrono::high_resolution_clock> start, end;
+	chrono::duration<double> dur;
+	bool printing = true;
 public:
 	explicit Timer(std::string process_name); //  = "Doing something unknown"
 	Timer();
 	~Timer();
 
-	double get_time(const std::string& s = "ms");
+
+	enum class time_units {
+		seconds,
+		milliseconds,
+		microseconds
+	};
+	double get_time(time_units unit = time_units::milliseconds);
+
 	bool set_message(const std::string& s);
+	bool remove_message();
 };
 
 

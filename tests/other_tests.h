@@ -39,3 +39,21 @@ inline void test_copying_to() {
 	std::cout << new_set << std::endl;
 	// std::cout << vec << std::endl;
 }
+
+inline void test_point_index_operator(){
+	point pnt(23.9, 2.39);
+	std::cout << pnt[0] << " " << pnt[1] << std::endl;
+
+	pnt[0] = 56.6;
+	std::cout << pnt << std::endl;
+
+	pnt[1] = 5.66;
+	std::cout << pnt[0] << " " << pnt[1] << std::endl;
+
+	const point cpnt = pnt;
+	std::cout << cpnt << std::endl;
+	std::cout << cpnt[0] << " " << cpnt[1] << std::endl;
+
+	// cpnt[1] = 30.; <- compile-time error
+	// pnt[2] = 30.; <- runtime error
+}
