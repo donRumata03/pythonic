@@ -68,7 +68,7 @@
 #include <optional>
 #include <ciso646>
 #include <shared_mutex>
-
+#include <compare>
 
 #include "windows.h"
 

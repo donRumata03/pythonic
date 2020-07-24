@@ -5,7 +5,7 @@
 #pragma once
 
 
-#include <ostream>
+#include "pch.h"
 #include <maths/simple_functions.h>
 
 struct point
@@ -13,12 +13,20 @@ struct point
 	double x = 0;
 	double y = 0;
 
-	point(double x, double y);
+
 	point() = default;
+	point(double x, double y);
+
 
 	point(const point& other) = default;
+	point(point&& other) = default;
 
-	friend bool operator == (const point& p1, const point& p2);
+	point& operator= (const point& other) = default;
+	point& operator= (point&& other) = default;
+
+	// friend bool operator == (const point& p1, const point& p2) = default;
+	auto operator <=>(const point& other) const = default;
+
 	double& operator[] (size_t index) { assert(index == 0 || index == 1); return reinterpret_cast<double*>(this)[index]; }
 	const double& operator[] (size_t index) const { return const_cast<const double&>(const_cast<point*>(this)->operator[](index)); }
 

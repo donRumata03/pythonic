@@ -170,7 +170,7 @@ add_executable(pythonic_test
         tests/timing_tests.h
 
 
-)
+        tests/geom_test.h)
 
 
 

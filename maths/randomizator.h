@@ -15,6 +15,7 @@ std::vector<ret> distribute(Args... args, size_t samples)
 	std::mt19937 gen{ rd() };
 
 	std::vector <ret> res;
+	res.reserve(samples);
 	for (size_t i = 0; i < samples; i++) {
 		res.push_back(d(gen));
 	}
@@ -51,11 +52,8 @@ template<class T, class E> auto randint(T from, E to, std::mt19937& gen) -> decl
 	if (from == to) return from;
 	return dec(from) + dec((gen() % (to - from)));
 }
-template<class T, class ... Args> T& random_choice(std::vector<T> &&values, Args... args)
-{
-	size_t index = randint(size_t(0), values.size(), args...);
-	return values[index];
-}
+
+
 template<class T, class ... Args> const T& random_choice(const std::vector<T>& values, Args... args)
 {
 	size_t index = randint(size_t(0), values.size(), args...);
@@ -66,19 +64,19 @@ template<class T, class ... Args> const T& random_choice(const std::vector<T>& v
 class normalizer
 {
 	std::vector<double> values;
-	size_t size = 0;
+	size_t m_size = 0;
 
 public:
-	explicit normalizer(const size_t samples) : size(samples)
+	explicit normalizer(const size_t samples) : m_size(samples)
 	{
-		values = normal_distribute(0, 1, size);
+		values = normal_distribute(0, 1, m_size);
 	}
 
 	void add_samples(const size_t amount)
 	{
 		auto new_points = normal_distribute(0, 1, amount);
 		values.reserve(values.size() + new_points.size());
-		size += amount;
+		m_size += amount;
 		for (auto& sample : new_points) values.push_back(sample);
 	}
 
@@ -87,6 +85,9 @@ public:
 		double usual_sample = random_choice(values);
 		return mu + sigma * usual_sample;
 	}
+
+	const size_t size() const { return m_size; }
+	const std::vector<double>& get_values() const { return values; };
 };
 
 size_t get_roulette_index(const std::vector<double>& russian_roulette, double value);

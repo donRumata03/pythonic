@@ -16,6 +16,7 @@
 #include "stl_tests.h"
 #include "other_tests.h"
 #include "timing_tests.h"
+#include "geom_test.h"
 
 #include <json_and_plot_test.h>
 
@@ -92,7 +93,7 @@ int main()
 	// print_nd_array_test();
 	// nd_slicing_test();
 	// nd_for_eaches_test();
-	test_nd_array_sum();
+	// test_nd_array_sum();
 
 	/// Smoothing
 	// test_smoothing();
@@ -104,6 +105,7 @@ int main()
 	// test_random();
 	// test_parallel_for_each();
 	// test_copying_to();
+	test_point_comparison();
 
 	/// Timing
 	// test_delayed_launch();
