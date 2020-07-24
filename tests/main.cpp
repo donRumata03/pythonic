@@ -74,7 +74,7 @@ int main()
 	// simple_test_json();
 	// basic_plot_test();
 	// line_plot_test();
-	// throwing_function_plotting_test();
+	throwing_function_plotting_test();
 	// throwing_everywhere_function_test();
 
 
@@ -105,7 +105,7 @@ int main()
 	// test_random();
 	// test_parallel_for_each();
 	// test_copying_to();
-	test_point_comparison();
+	// test_point_comparison();
 
 	/// Timing
 	// test_delayed_launch();

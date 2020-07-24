@@ -12,7 +12,6 @@
 #include "other/python_builtins.h"
 
 
-using nlohmann::json;
 
 
 constexpr const char* go_to_python_dir_command = "cd \"C:/Program Files (x86)/Python37-32/\"";
@@ -33,10 +32,11 @@ struct plot_params
 
 struct plot_common_params
 {
-	bool log_x = false; // TODO!
-	bool log_y = false; // TODO!
+	bool log_x = false;
+	bool log_y = false;
 
 	std::string output_filename = "";
+	std::string window_title = "";
 };
 
 class plot_range_params

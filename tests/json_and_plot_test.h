@@ -46,7 +46,9 @@ inline void throwing_function_plotting_test(){
 			},
 			{ "test_name" }, { double(-2), double(2), size_t(100000) }, true);
 
-	show_plot();
+	show_plot({
+		.window_title = "Test Window Title"
+	});
 }
 
 inline void throwing_everywhere_function_test()

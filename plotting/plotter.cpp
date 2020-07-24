@@ -57,6 +57,7 @@ void show_plot(const plot_common_params& common_params)
 	// assert(fs::exists({ std::string (data_filename) }));
 
 	const std::string& output_filename = common_params.output_filename;
+	const std::string& window_title = common_params.window_title;
 	bool log_x = common_params.log_x;
 	bool log_y = common_params.log_y;
 
@@ -75,6 +76,8 @@ void show_plot(const plot_common_params& common_params)
 		j["log_x"] = log_x;
 		j["log_y"] = log_y;
 		if (!output_filename.empty()) j["output_filename"] = output_filename;
+		if (!window_title.empty()) j["window_title"] = window_title;
+
 		write_file(j.dump(4), recode::from_utf8_to_utf16(data_filename));
 	// }
 

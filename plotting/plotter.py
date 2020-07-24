@@ -60,11 +60,16 @@ if log_x:
 if log_y:
     ax.set_yscale("log")
 
+if "window_title" in raw_data:
+    ax.set_title(raw_data["window_title"])
+
+
 if "output_filename" in raw_data:
     # print(raw_data["output_filename"])
     fig = plt.gcf()
     fig.set_size_inches(16, 9)
     plt.savefig(raw_data["output_filename"])
+
 else:
     plt.show()
 

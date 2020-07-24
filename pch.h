@@ -73,6 +73,7 @@
 #include "windows.h"
 
 #include <json.hpp>
+using nlohmann::json;
 
 using namespace std::string_literals;
 using namespace std::chrono_literals;

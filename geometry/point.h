@@ -16,6 +16,7 @@ struct point
 
 	point() = default;
 	point(double x, double y);
+	point(const std::pair<double, double>& pair) : x(pair.first), y(pair.second) {}
 
 
 	point(const point& other) = default;
