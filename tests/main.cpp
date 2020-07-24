@@ -81,13 +81,13 @@ int main()
 	/// Python:
 	// test_splitting();
 	// circle_test();
-	test_point_index_operator();
+	// test_point_index_operator();
 	// cut_tests();
 	// test_mult();
 
 	/// ND:
 	// nd_point_test();
-	// nd_indexing_test();
+	nd_indexing_test();
 	// nd_get_points_test();
 	// print_nd_array_test();
 	// nd_slicing_test();

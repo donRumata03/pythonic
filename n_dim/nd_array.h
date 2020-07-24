@@ -17,7 +17,7 @@ private:
 	size_t this_dim_val;
 	T* data {nullptr}; // Available only for 1-dim arrays
 
-	bool is_dead = true;
+	// bool is_dead = false;
 public:
 	std::vector<size_t> dim_vals;
 	size_t dims = 0;
@@ -64,19 +64,22 @@ public:
 	{
 		// std::cout << "Calling ~: " << dims << std::endl;
 
+/*
 		if (is_dead) {
 			std::cout << "Stop... But I`m dead!!!" << std::endl;
 			return;
 		}
+*/
 
-		if (dims > 1) {
+		if (arrays && dims > 1) {
 			for (size_t arr_index = 0; arr_index < this_dim_val; arr_index++) arrays[arr_index].~nd_array();
 		}
 
 		operator delete[](arrays);
 		delete[] data;
 
-		is_dead = true;
+		arrays = nullptr;
+		data = nullptr;
 	}
 
 
@@ -281,8 +284,6 @@ nd_array<T>::nd_array(size_t _dims, const std::vector<size_t> &_dim_vals, const 
 			auto ptr = new (this_addr) nd_array<T>(dims - 1, next_dim_vals);
 		}
 	}
-
-	is_dead = false;
 }
 
 template<class T> std::ostream &operator<< (std::ostream &os, const nd_array<T> &array)

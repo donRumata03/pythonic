@@ -15,7 +15,7 @@ inline void date_test() {
 	constexpr auto x1 = 2015_y/March/Sunday[last];
 	std::cout << x1 << std::endl;
 
-	auto today = system_clock::now();
+	auto today = chrono::system_clock::now();
 	std::cout << today << '\n';
 	std::invoke([](){});
 	std::exception_ptr ex = std::make_exception_ptr(std::bad_alloc());
@@ -50,10 +50,10 @@ inline void test_task_scheduler(){
 	ts = ts + 3s;
 
 	chrono::seconds seconds1 = 4s;
-	auto minutes1 = chrono::round<minutes>(seconds1);
+	auto minutes1 = chrono::round<chrono::minutes>(seconds1);
 
-	time_point<std::chrono::high_resolution_clock> t = chrono::high_resolution_clock::now();
-	time_point<std::chrono::high_resolution_clock> t2 = chrono::high_resolution_clock::now();
+	chrono::time_point<std::chrono::high_resolution_clock> t = chrono::high_resolution_clock::now();
+	chrono::time_point<std::chrono::high_resolution_clock> t2 = chrono::high_resolution_clock::now();
 
 	std::cout << (t2 - t).count() << "ns" << std::endl;
 
