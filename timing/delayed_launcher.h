@@ -12,7 +12,7 @@
 template <class callable, class... arguments>
 class delayed_launcher
 {
-	using function_type = std::function<typename std::result_of<callable(arguments...)>::type()>;
+	using function_type = std::function<typename std::invoke_result<callable, arguments...>::type()>;
 
 	bool _is_enabled = true;
 	function_type task;
