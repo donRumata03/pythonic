@@ -14,6 +14,7 @@ struct circle
 	double r = 0;
 
 	circle(const point& p, double radius) : center{p}, r{radius} {}
+	// circle(const std::pair<double, double>& p, double radius) : center{p}, r{radius} {}
 	circle(const point& cent, const point& circle_point) : center{cent}, r {point::dist(center, circle_point)} {}
 	circle(const point& p1, const point& p2, const point& p3);
 
