@@ -2,7 +2,7 @@
 // Created by Vova on 26.05.2020.
 //
 
-#include "pch.h"
+#include "pythonic_pch.h"
 #include "maths/statistics.h"
 #include "maths/numpyic.h"
 

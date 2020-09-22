@@ -64,3 +64,5 @@ inline void test_mult(){
 
 	std::cout << d << std::endl;
 }
+
+

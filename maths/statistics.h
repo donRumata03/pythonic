@@ -133,9 +133,6 @@ T sigma(const std::vector<T>& ms, bool mediana_known = false, double mediana = 0
 }
 
 
-pms count_number_density(std::vector<double>& numbers, double percent_sigma, size_t target_number, double percent_frame_width);
-
-// TODO!
 // nd_array<double> count_nd_density(std::vector<std::vector<double>>& numbers, size_t target_number, double percent_sigma);
 
 

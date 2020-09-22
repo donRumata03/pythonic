@@ -59,6 +59,7 @@ int main()
 	/// Printing
 
 	// test_colored_printing();
+	test_automatic_colored_printing();
 	// print_vector_test();
 	// print_set_test();
 	// print_map_test();
@@ -74,7 +75,7 @@ int main()
 	// simple_test_json();
 	// basic_plot_test();
 	// line_plot_test();
-	throwing_function_plotting_test();
+	// throwing_function_plotting_test();
 	// throwing_everywhere_function_test();
 
 
@@ -111,6 +112,7 @@ int main()
 	// test_delayed_launch();
 	// test_task_scheduler();
 	// date_test();
+	// easy_measure_test();
 
 	return 0;
 }

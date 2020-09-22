@@ -118,7 +118,7 @@ set(PYTHONIC_SOURCES pythonic.h
         timing/Timer.cpp
         timing/Timer.h
 
-        geometry/circle.cpp geometry/circle.h n_dim/nd_point.h displaying/type_printer.h other/Counter.h timing/delayed_launcher.h timing/task_scheduler.h n_dim/nd_array.inl.h)
+        geometry/circle.cpp geometry/circle.h n_dim/nd_point.h displaying/type_printer.h other/Counter.h timing/delayed_launcher.h timing/task_scheduler.h n_dim/nd_array.inl.h timing/easy_measurer.h)
 
 
 # message("${PYTHONIC_SOURCES}")
@@ -140,7 +140,7 @@ cotire(pythonic)
 ## Project with tests:
 
 project(pythonic_test)
-set_target_properties(pythonic PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "pch.h")
+set_target_properties(pythonic PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "pythonic_pch.h")
 
 include_directories(pythonic_test tests)
 

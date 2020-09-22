@@ -16,7 +16,14 @@ inline void byte_printing_test(){
 }
 
 inline void test_colored_printing() {
-	colored_print("Hello, world!", console_colors::yellow, console_colors::bold, console_colors::underlined);
+	colored_print("Hello, yellow world!", console_colors::yellow, console_colors::bold, console_colors::underlined);
+}
+
+inline void test_automatic_colored_printing() {
+	std::cout << console_colors::red << console_colors::bold << console_colors::underlined << "Hello, red world!" << console_colors::remove_all_colors <<
+	" Not red already, though..."
+	<< color_ending_string << color_ending_string << color_ending_string << color_ending_string << color_ending_string << color_ending_string << color_ending_string << color_ending_string << color_ending_string
+	<< console_colors::red << "Red!" << std::endl;
 }
 
 inline void print_vector_test(){

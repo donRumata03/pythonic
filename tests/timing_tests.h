@@ -72,3 +72,16 @@ inline void test_task_scheduler(){
 	std::cout << "Timer cancelled" << std::endl;
 
 }
+
+inline void easy_measure_test() {
+	std::cout << measure_function_execution_time([](){
+		circle c({1., 100}, {100., 10}, {12, 300});
+	}, 100000 /*, "Helloing" */) << std::endl;
+
+	std::cout << measure_function_execution_time([](){
+		circle c({1., 100}, {100., 10});
+	}, 100000 /*, "Helloing" */) << std::endl;
+
+
+	std::cout << circle({1., 100}, {100., 10}, {12, 300}) << std::endl;
+}

@@ -2,7 +2,7 @@
 // Created by Vova on 24.05.2020.
 //
 
-#include "pch.h"
+#include "pythonic_pch.h"
 
 #include "file_reader.h"
 #include "encoding/encoder.h"

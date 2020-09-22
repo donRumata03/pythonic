@@ -2,7 +2,7 @@
 // Created by Vova on 27.05.2020.
 //
 
-#include "pch.h"
+#include "pythonic_pch.h"
 #include "circle.h"
 
 circle::circle(const point &p1, const point &p2, const point &p3)
