@@ -9,7 +9,7 @@
 inline std::vector<std::pair<size_t, size_t>> distribute_task_ranges(size_t task_number, size_t group_number)
 {
 	std::vector<std::pair<size_t, size_t>> res(group_number);
-	size_t tasks_per_thread = static_cast<size_t>(std::ceil(double(task_number) / group_number));
+	auto tasks_per_thread = static_cast<size_t>(std::ceil(double(task_number) / group_number));
 
 	/*
 	size_t this_index = 0;

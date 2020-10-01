@@ -84,7 +84,8 @@ int main()
 	// test_splitting();
 	// circle_test();
 	// test_point_index_operator();
-	point_operator_test ();
+	// point_operator_test ();
+	test_almost_equal();
 	// cut_tests();
 	// test_mult();
 

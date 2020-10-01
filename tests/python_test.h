@@ -66,3 +66,13 @@ inline void test_mult(){
 }
 
 
+inline void test_almost_equal() {
+	std::cout << 1 << " " << 1 << " " << almost_equal(1., 1.) << std::endl;
+	std::cout << 1 << " " << 2 << " " << almost_equal(1., 2.) << std::endl;
+	std::cout << 2 << " " << 1 << " " << almost_equal(2., 1.) << std::endl;
+
+	std::cout << 1e-20 << " " << 1e-20         << " " << almost_equal(1e-20, 1e-20) << std::endl;
+	std::cout << 1e-20 << " " << 2e-20         << " " << almost_equal(1e-20, 2e-20) << std::endl;
+	std::cout << -1    << " " << "-1. + 1e-20" << " " << almost_equal(-1., (-1. + 1e-20)) << std::endl;
+	std::cout << -1    << " " << -2            << " " << almost_equal(-1., -2.) << std::endl;
+}

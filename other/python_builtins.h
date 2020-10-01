@@ -235,7 +235,7 @@ typename std::enable_if<std::is_same<typename Output_container_t::value_type, ty
 
 	// std::copy(input_container.begin(), input_container.end(), std::begin(res));
 
-	std::cout << type_name<decltype(res)>() << std::endl;
+	// std::cout << type_name<decltype(res)>() << std::endl;
 
 	/*for () {
 

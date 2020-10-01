@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../other/typedefs.h"
+#include <ciso646>
 
 template <class T>
 inline T sgn(const T& val)
@@ -26,6 +27,12 @@ inline T cube(const T& val)
 	return val * val * val;
 }
 
+template <class Float, std::enable_if_t<std::is_floating_point_v<Float>, void*> nothing = nullptr>
+bool almost_equal(Float float1, Float float2, Float eps = 1e-10) {
+	if ((float1 == 0) or (float2 == 0) or ((float1 + float2) == 0)) return false;
+
+	return std::abs((float1 - float2) / (float1 + float2)) < eps;
+}
 
 inline constexpr double pi = 3.1415926535897932384626433832795028841971693993751058209749;
 inline constexpr double e = 2.71828182845904523536028747135266249775724709369995957496696;
