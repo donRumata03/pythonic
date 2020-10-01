@@ -48,6 +48,46 @@ point pow (const point &point, double pow)
 
 
 
+point operator+ (const point &point, double value)
+{
+	return { point.x + value, point.y + value };
+}
+
+point operator+ (double value, const point &point)
+{
+	return { point.x + value, point.y + value };
+}
+
+
+point operator- (const point &point, double value)
+{
+	return { point.x - value, point.y - value };
+}
+
+point operator- (double value, const point &point)
+{
+	return { point.x - value, point.y - value };
+}
+
+
+point operator* (const point &point, double value)
+{
+	return { point.x * value, point.y * value };
+}
+
+point operator* (double value, const point &point)
+{
+	return { point.x * value, point.y * value };
+}
+
+point operator/ (const point &point, double value)
+{
+	return { point.x / value, point.y / value };
+}
+
+
+
+
 
 
 
