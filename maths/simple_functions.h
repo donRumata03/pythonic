@@ -29,8 +29,8 @@ inline T cube(const T& val)
 
 template <class Float, std::enable_if_t<std::is_floating_point_v<Float>, void*> nothing = nullptr>
 bool almost_equal(Float float1, Float float2, Float eps = 1e-10) {
-	if ((float1 == 0) or (float2 == 0) or ((float1 + float2) == 0)) return false;
-
+	if (float1 == float2) return true;
+	if ((float1 + float2) == 0) return false;
 	return std::abs((float1 - float2) / (float1 + float2)) < eps;
 }
 

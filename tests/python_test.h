@@ -75,4 +75,6 @@ inline void test_almost_equal() {
 	std::cout << 1e-20 << " " << 2e-20         << " " << almost_equal(1e-20, 2e-20) << std::endl;
 	std::cout << -1    << " " << "-1. + 1e-20" << " " << almost_equal(-1., (-1. + 1e-20)) << std::endl;
 	std::cout << -1    << " " << -2            << " " << almost_equal(-1., -2.) << std::endl;
+
+	std::cout << 0    << " " << 0            << " " << almost_equal(0., 0.) << std::endl;
 }
