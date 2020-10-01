@@ -59,7 +59,7 @@ int main()
 	/// Printing
 
 	// test_colored_printing();
-	test_automatic_colored_printing();
+	// test_automatic_colored_printing();
 	// print_vector_test();
 	// print_set_test();
 	// print_map_test();
@@ -84,8 +84,10 @@ int main()
 	// test_splitting();
 	// circle_test();
 	// test_point_index_operator();
+	point_operator_test ();
 	// cut_tests();
 	// test_mult();
+
 
 	/// ND:
 	// nd_point_test();

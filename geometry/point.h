@@ -39,4 +39,10 @@ struct point
 	// template <class T, class E> point(const T& x, const E& y);
 };
 
+point operator+ (const point& first, const point& second);
+point operator- (const point& first, const point& second);
+point operator* (const point& first, const point& second);
+point operator/ (const point& first, const point& second);
 
+point sqrt(const point& point);
+point pow(const point& point, double pow);

@@ -12,7 +12,7 @@ std::vector<double> arange(double start, double end, double step = 1); // TODO
 std::vector<double> element_wise_sum(const std::vector<double>& vec1, const std::vector<double>& vec2);
 std::vector<double> element_wise_product(const std::vector<double>& vec1, const std::vector<double>& vec2);
 
-template<class T, typename IndexingType = size_t>
+template<typename IndexingType, class T>
 std::vector<std::pair<IndexingType, T>> enumerate (const std::vector<T>& vector) {
 	std::vector<std::pair<IndexingType, T>> res(vector.size());
 	for (size_t i = 0; i < vector.size(); ++i) {

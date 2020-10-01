@@ -13,6 +13,50 @@ std::ostream &operator<<(std::ostream &os, const point &point)
 	return os;
 }
 
+
+//////////// Element-wise operators: //////////////////
+
+point operator+ (const point &first, const point &second)
+{
+	return point { first.x + second.x, first.y + second.y };
+}
+
+point operator- (const point &first, const point &second)
+{
+	return point { first.x - second.x, first.y - second.y };
+}
+
+point operator* (const point &first, const point &second)
+{
+	return point { first.x * second.x, first.y * second.y };
+}
+
+point operator/ (const point &first, const point &second)
+{
+	return point { first.x / second.x, first.y / second.y };
+}
+
+point sqrt (const point &point)
+{
+	return { std::sqrt(point.x), std::sqrt(point.y) };
+}
+
+point pow (const point &point, double pow)
+{
+	return { std::pow(point.x, pow), std::pow(point.y, pow) };
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 bool operator==(const point &p1, const point &p2)
 {

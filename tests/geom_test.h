@@ -25,3 +25,12 @@ inline void test_point_comparison() {
 
 
 }
+
+inline void point_operator_test () {
+	std::cout << (point{ 1, 2 } + point { 3, 4 }) << std::endl;
+	std::cout << (point{ 1, 2 } - point { 3, 4 }) << std::endl;
+	std::cout << (point{ 1, 2 } * point { 3, 4 }) << std::endl;
+	std::cout << (point{ 1, 2 } / point { 3, 4 }) << std::endl;
+	std::cout << sqrt(point{ 2, 3 }) << std::endl;
+	std::cout << pow(point{ 1, 2 }, 5) << std::endl;
+}
