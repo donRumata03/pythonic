@@ -23,7 +23,7 @@ inline void simple_test_json() {
 
 inline void basic_plot_test()
 {
-	add_to_plot({{0, 0}, {1, 0}, {10, 100}, {20, 150}}, {});
+	add_points_to_plot({{0, 0}, {1, 0}, {10, 100}, {20, 150}}, {});
 	try {
 		show_plot({false, true, R"(D:\pythonic\plotting\test_plot.png)" });
 	} catch (std::exception& e) {

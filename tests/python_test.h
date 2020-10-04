@@ -34,9 +34,9 @@ inline void test_smoothing(){
 		brute_smoothed = smooth(zip(xs, ys), 0.1, -1, 0.5);
 	}
 
-	add_to_plot(xs, ys);
-	add_to_plot(smoothed);
-	add_to_plot(brute_smoothed);
+	add_vectors_to_plot(xs, ys);
+	add_pairs_to_plot(smoothed);
+	add_pairs_to_plot(brute_smoothed);
 	show_plot();
 }
 

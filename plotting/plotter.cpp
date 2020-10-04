@@ -13,7 +13,7 @@
 
 constexpr const char* data_filename = R"(D:\pythonic\plotting\plot_data.json)";
 
-void add_to_plot(const pms &points, const plot_params &params)
+void add_pairs_to_plot(const pms &points, const plot_params &params)
 {
 	json result = {};
 
@@ -136,7 +136,7 @@ void add_function_to_plot(const std::function<double(double)> &function, const p
 				current_segment_points.emplace_back(x, function_res); // TODO!!!!!!!! have different graph parts not to link them using line!!!!!!!!!!!
 			}
 			if (!current_segment_points.empty() && (!function_completed || point_index == xs.size() - 1)) {
-				add_to_plot(current_segment_points, real_params); // todo: color autotune if it`s default!
+				add_pairs_to_plot(current_segment_points, real_params); // todo: color autotune if it`s default!
 				real_params.name = "";
 				current_segment_points.clear();
 			}
@@ -148,13 +148,24 @@ void add_function_to_plot(const std::function<double(double)> &function, const p
 		point_index++;
 	}
 	if (!catch_and_ignore_exceptions) {
-		add_to_plot(res, params);
+		add_pairs_to_plot(res, params);
 	}
 }
 
 void add_graphs_to_plot (const std::vector<pms> &graphs, const plot_params &params)
 {
 	// TODO! (Deal with unique label and unique color which are required!)
+}
+
+void add_points_to_plot (const std::vector<point> &points, const plot_params &params)
+{
+	pms pairs;
+	pairs.reserve(points.size());
+
+	for (auto& pnt : points)
+		pairs.push_back(std::pair<double, double>(pnt));
+
+	add_pairs_to_plot(pairs, params);
 }
 
 

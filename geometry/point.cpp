@@ -36,16 +36,6 @@ point operator/ (const point &first, const point &second)
 	return point { first.x / second.x, first.y / second.y };
 }
 
-point sqrt (const point &point)
-{
-	return { std::sqrt(point.x), std::sqrt(point.y) };
-}
-
-point pow (const point &point, double pow)
-{
-	return { std::pow(point.x, pow), std::pow(point.y, pow) };
-}
-
 
 
 point operator+ (const point &point, double value)
@@ -69,7 +59,6 @@ point operator- (double value, const point &point)
 	return { point.x - value, point.y - value };
 }
 
-
 point operator* (const point &point, double value)
 {
 	return { point.x * value, point.y * value };
@@ -83,6 +72,35 @@ point operator* (double value, const point &point)
 point operator/ (const point &point, double value)
 {
 	return { point.x / value, point.y / value };
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+point sqrt (const point &point)
+{
+	return { std::sqrt(point.x), std::sqrt(point.y) };
+}
+
+point pow (const point &point, double pow)
+{
+	return { std::pow(point.x, pow), std::pow(point.y, pow) };
+}
+
+
+point log (const point &point, double log_base)
+{
+	double log_of_log_base = std::log(log_base);
+	return { std::log(point.x) / log_of_log_base, std::log(point.y) / log_of_log_base };
+}
+
+double abs (const point &point)
+{
+	return std::sqrt(squared_abs(point));
+}
+
+double squared_abs (const point &point)
+{
+	return square(point.x) + square(point.y);
 }
 
 

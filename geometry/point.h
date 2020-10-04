@@ -16,7 +16,7 @@ struct point
 
 	point() = default;
 	point(double x, double y);
-	point(const std::pair<double, double>& pair) : x(pair.first), y(pair.second) {}
+	/*explicit*/ point(const std::pair<double, double>& pair) : x(pair.first), y(pair.second) {}
 
 
 	point(const point& other) = default;
@@ -32,6 +32,7 @@ struct point
 	const double& operator[] (size_t index) const { return const_cast<const double&>(const_cast<point*>(this)->operator[](index)); }
 
 	friend std::ostream &operator<<(std::ostream &os, const point &point);
+	/*explicit*/ operator std::pair<double, double> () const { return { x, y }; }
 
 	static double sqr_dist(const point& p1, const point& p2) { return square(p1.x - p2.x) + square(p1.y - p2.y); }
 	static double dist(const point& p1, const point& p2) { return sqrt(sqr_dist(p1, p2)); }
@@ -62,3 +63,7 @@ point operator/ (const point& point, double value);
 
 point sqrt(const point& point);
 point pow(const point& point, double pow);
+point log(const point& point, double log_base);
+
+double abs(const point& point);
+double squared_abs(const point& point);
