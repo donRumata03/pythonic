@@ -38,7 +38,8 @@ struct point
 	static double dist(const point& p1, const point& p2) { return sqrt(sqr_dist(p1, p2)); }
 
 	[[nodiscard]] bool is_zero() const { return x == 0. and y == 0.; }
-	// template <class T, class E> point(const T& x, const E& y);
+
+	point & scale_from (const point &from_what, double scale_factor);
 };
 
 point operator- (const point& point);

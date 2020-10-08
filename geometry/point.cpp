@@ -13,6 +13,12 @@ std::ostream &operator<<(std::ostream &os, const point &point)
 	return os;
 }
 
+point & point::scale_from (const point &from_what, double scale_factor)
+{
+	(*this) = (*this) + ((*this) - from_what) * (scale_factor - 1);
+	return *this;
+}
+
 
 //////////// Element-wise operators: //////////////////
 

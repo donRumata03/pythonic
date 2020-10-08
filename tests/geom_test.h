@@ -34,3 +34,10 @@ inline void point_operator_test () {
 	std::cout << sqrt(point{ 2, 3 }) << std::endl;
 	std::cout << pow(point{ 1, 2 }, 5) << std::endl;
 }
+
+inline void point_scaling_test() {
+	std::cout << point{1, 1}.scale_from(point{2, 1}, -1) << std::endl;
+	std::cout << point{1, 1}.scale_from(point{0, 0}, -1) << std::endl;
+	std::cout << point{1, 1}.scale_from(point{100, 1000}, 1) << std::endl;
+	std::cout << point{1, 1}.scale_from(point{0, 1}, 2) << std::endl;
+}
