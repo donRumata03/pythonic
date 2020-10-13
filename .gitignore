@@ -1,0 +1,13 @@
+# There are many temporary files to ignore:
+cmake-build-debug/**
+cmake-build-release/**
+# .idea/**
+
+# This files are useful for users:
+!/cmake-build-release/pythonic_test.exe
+!/cmake-build-release/pythonic.lib
+
+!/cmake-build-debug/pythonic_test.exe
+!/cmake-build-debug/pythonic.lib
+
+
