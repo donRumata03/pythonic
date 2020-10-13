@@ -19,6 +19,18 @@ point & point::scale_from (const point &from_what, double scale_factor)
 	return *this;
 }
 
+point &point::scale_x_from (double from, double scale_factor)
+{
+	x += (x - from) * (scale_factor - 1);
+	return *this;
+}
+
+point &point::scale_y_from (double from, double scale_factor)
+{
+	y += (y - from) * (scale_factor - 1);
+	return *this;
+}
+
 
 //////////// Element-wise operators: //////////////////
 

@@ -40,6 +40,8 @@ struct point
 	[[nodiscard]] bool is_zero() const { return x == 0. and y == 0.; }
 
 	point & scale_from (const point &from_what, double scale_factor);
+	point& scale_x_from(double from, double scale_factor);
+	point& scale_y_from(double from, double scale_factor);
 };
 
 point operator- (const point& point);

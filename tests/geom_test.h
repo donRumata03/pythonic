@@ -40,4 +40,8 @@ inline void point_scaling_test() {
 	std::cout << point{1, 1}.scale_from(point{0, 0}, -1) << std::endl;
 	std::cout << point{1, 1}.scale_from(point{100, 1000}, 1) << std::endl;
 	std::cout << point{1, 1}.scale_from(point{0, 1}, 2) << std::endl;
+	std::cout << point{1, 1}.scale_from(point{2, 2}, 2) << std::endl;
+
+	std::cout << point{1, 1}.scale_x_from(0, 2).scale_y_from(1, 2) << std::endl;
+	std::cout << point{1, 1}.scale_x_from(2, 2).scale_y_from(2, 2) << std::endl;
 }
