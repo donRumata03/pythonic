@@ -70,14 +70,31 @@
 #include <shared_mutex>
 #include <compare>
 
-#include "windows.h"
-
 #include <json.hpp>
-using nlohmann::json;
 
+using nlohmann::json;
 using namespace std::string_literals;
+
 using namespace std::chrono_literals;
 namespace chrono = std::chrono;
+
+// Determine platform:
+#ifdef WIN32
+    #define PYTHONIC_IS_WINDOWS
+#else
+    #define PYTHONIC_IS_LINUX
+#endif
+
+// Include package for recoding:
+#ifdef PYTHONIC_IS_WINDOWS
+    #include "windows.h"
+#endif
+
+#ifdef PYTHONIC_IS_LINUX
+    #include "iconv.h"
+#endif
+
+
 
 #undef min
 #undef max

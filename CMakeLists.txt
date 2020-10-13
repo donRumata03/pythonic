@@ -68,17 +68,29 @@ set(PYTHONIC_SOURCES pythonic.h
         encoding/win32_examples/utf8_except.h
         encoding/win32_examples/utf8_utf16_conversion.h
 
-        files/file_walker.cpp
-        files/file_walker.h
         encoding/encode_exception.cpp
         encoding/encode_exception.h
 
-        encoding/variations/cp1251_utf8.cpp
-        encoding/variations/cp1251_utf8.h
-        encoding/variations/utf8_utf16.cpp
-        encoding/variations/utf8_utf16.h
-        encoding/variations/cp1251_utf16.cpp
-        encoding/variations/cp1251_utf16.h
+        encoding/variations/windows/cp1251_utf8.cpp
+        encoding/variations/windows/cp1251_utf8.h
+        encoding/variations/windows/utf8_utf16.cpp
+        encoding/variations/windows/utf8_utf16.h
+        encoding/variations/windows/cp1251_utf16.cpp
+        encoding/variations/windows/cp1251_utf16.h
+
+        # TODO: Determine platform here and add different files!
+        encoding/variations/linux/linux_recoding_base.h
+
+        encoding/variations/linux/cp1251_utf8.cpp
+        encoding/variations/linux/cp1251_utf8.h
+        encoding/variations/linux/utf8_utf16.cpp
+        encoding/variations/linux/utf8_utf16.h
+        encoding/variations/linux/cp1251_utf16.cpp
+        encoding/variations/linux/cp1251_utf16.h
+
+
+        files/file_walker.cpp
+        files/file_walker.h
 
         displaying/print_stl.h
 
@@ -118,7 +130,17 @@ set(PYTHONIC_SOURCES pythonic.h
         timing/Timer.cpp
         timing/Timer.h
 
-        geometry/circle.cpp geometry/circle.h n_dim/nd_point.h displaying/type_printer.h other/Counter.h timing/delayed_launcher.h timing/task_scheduler.h n_dim/nd_array.inl.h timing/easy_measurer.h)
+        geometry/circle.cpp
+        geometry/circle.h
+        n_dim/nd_point.h
+        displaying/type_printer.h
+        other/Counter.h
+        timing/delayed_launcher.h
+        timing/task_scheduler.h
+        n_dim/nd_array.inl.h
+        timing/easy_measurer.h
+
+        )
 
 
 # message("${PYTHONIC_SOURCES}")

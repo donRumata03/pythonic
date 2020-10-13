@@ -19,7 +19,10 @@ public:
 		utf16_to_cp1251,
 
 		cp1251_to_utf8,
-		cp1251_to_utf16
+		cp1251_to_utf16,
+
+		utf8_to_utf16,
+		utf16_to_utf8,
 	};
 
 

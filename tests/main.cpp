@@ -25,10 +25,11 @@
 
 int main()
 {
-	SetConsoleOutputCP(CP_UTF8);
-	SetConsoleCP(CP_UTF8);
+	// SetConsoleOutputCP(CP_UTF8);
+	// SetConsoleCP(CP_UTF8);
 
-	system("chcp 65001");
+	// system("chcp 65001");
+    set_utf8_in_console();
 
 
 	/// Encoding

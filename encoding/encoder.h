@@ -7,17 +7,30 @@
 #include <string>
 #include <vector>
 
-#include "encoding/win32_examples/utf8_utf16_conversion.h"
 
 #include "encode_exception.h"
 
-#include "variations/cp1251_utf16.h"
-#include "variations/cp1251_utf8.h"
-#include "variations/utf8_utf16.h"
+#ifdef PYTHONIC_IS_WINDOWS
+    #include "variations/windows/cp1251_utf16.h"
+    #include "variations/windows/cp1251_utf8.h"
+    #include "variations/windows/utf8_utf16.h"
+    #include "encoding/win32_examples/utf8_utf16_conversion.h"
+
+#else
+
+    #ifdef PYTHONIC_IS_LINUX
+        #include "variations/linux/cp1251_utf16.h"
+        #include "variations/linux/cp1251_utf8.h"
+        #include "variations/linux/utf8_utf16.h"
+    #else
+        #error "Windows or Linux?"
+    #endif
+
+#endif
 
 #include <iostream>
 
-void set_utf8();
+void set_utf8_in_console();
 
 enum class encoding
 {
