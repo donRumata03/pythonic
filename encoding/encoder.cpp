@@ -9,8 +9,8 @@
 
 void set_utf8_in_console() {
 #ifdef PYTHONIC_IS_WINDOWS
-    SetConsoleOutputEncoding(CP_UTF8);
-    system("chcp "s + std::to_string(CP_UTF8));
+    SetConsoleOutputCP(CP_UTF8);
+    system(("chcp "s + std::to_string(CP_UTF8)).c_str());
 #endif
 }
 

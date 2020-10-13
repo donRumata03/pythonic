@@ -4,10 +4,7 @@
 
 #pragma once
 
-#include <string>
-#include <vector>
-
-
+#include "pythonic_pch.h"
 #include "encode_exception.h"
 
 #ifdef PYTHONIC_IS_WINDOWS
@@ -15,17 +12,12 @@
     #include "variations/windows/cp1251_utf8.h"
     #include "variations/windows/utf8_utf16.h"
     #include "encoding/win32_examples/utf8_utf16_conversion.h"
-
+#elif defined(PYTHONIC_IS_LINUX)
+    #include "variations/linux/cp1251_utf16.h"
+    #include "variations/linux/cp1251_utf8.h"
+    #include "variations/linux/utf8_utf16.h"
 #else
-
-    #ifdef PYTHONIC_IS_LINUX
-        #include "variations/linux/cp1251_utf16.h"
-        #include "variations/linux/cp1251_utf8.h"
-        #include "variations/linux/utf8_utf16.h"
-    #else
         #error "Windows or Linux?"
-    #endif
-
 #endif
 
 #include <iostream>

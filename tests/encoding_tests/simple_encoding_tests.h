@@ -8,7 +8,6 @@
 #include <encoding/encoder.h>
 
 #include <string>
-#include <encoding/variations/cp1251_utf8.h>
 
 using namespace recode;
 

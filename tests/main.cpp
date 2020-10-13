@@ -40,7 +40,7 @@ int main()
 	// test_reading_file_with_russian_name();
 	// test_cp1251_file_writing();
 	// test_cp1251_file_reading();
-	// test_converting_bad_unicode_characters_to_cp1251();
+	test_converting_bad_unicode_characters_to_cp1251();
 	// test_enc_detecting();
 	// auto_recode_test();
 	// auto_lower_upper_test();
@@ -86,7 +86,7 @@ int main()
 	// circle_test();
 	// test_point_index_operator();
 	// point_operator_test ();
-	point_scaling_test();
+	// point_scaling_test();
 	// test_almost_equal();
 	// cut_tests();
 	// test_mult();

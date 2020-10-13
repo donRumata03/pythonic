@@ -41,12 +41,58 @@ macro(print_target_libraries target_name)
 message(___________________________________________)
 endmacro()
 
-
-
-
+###########################################################################
 project(pythonic)
-
 set(CMAKE_CXX_STANDARD 20)
+
+# Platform Specific stuff:
+if (WIN32)
+    message("Platform: Windows")
+
+    if(MSVC)
+        message("Compiler: MSVC")
+    else()
+        message("WTF compiler isn't MSVC on Windows??")
+    endif()
+
+    set(platform_specific_source_files
+
+            encoding/win32_examples/utf8_except.h
+            encoding/win32_examples/utf8_utf16_conversion.h
+
+            encoding/variations/windows/cp1251_utf8.cpp
+            encoding/variations/windows/cp1251_utf8.h
+            encoding/variations/windows/utf8_utf16.cpp
+            encoding/variations/windows/utf8_utf16.h
+            encoding/variations/windows/cp1251_utf16.cpp
+            encoding/variations/windows/cp1251_utf16.h
+            )
+endif (WIN32)
+
+if (UNIX)
+    message("Platform: *nix")
+
+    if(CMAKE_COMPILER_IS_GNUCC)
+        message("Compiler: GCC")
+    else()
+        message("WTF compiler isn't GCC in Linux??")
+    endif()
+
+    set(platform_specific_source_files
+
+            encoding/variations/linux/linux_recoding_base.h
+
+            encoding/variations/linux/cp1251_utf8.cpp
+            encoding/variations/linux/cp1251_utf8.h
+            encoding/variations/linux/utf8_utf16.cpp
+            encoding/variations/linux/utf8_utf16.h
+            encoding/variations/linux/cp1251_utf16.cpp
+            encoding/variations/linux/cp1251_utf16.h
+
+            )
+
+endif (UNIX)
+
 
 include_directories(/)
 
@@ -65,28 +111,10 @@ set(PYTHONIC_SOURCES pythonic.h
 
         maths/simple_functions.h
 
-        encoding/win32_examples/utf8_except.h
-        encoding/win32_examples/utf8_utf16_conversion.h
 
         encoding/encode_exception.cpp
         encoding/encode_exception.h
 
-        encoding/variations/windows/cp1251_utf8.cpp
-        encoding/variations/windows/cp1251_utf8.h
-        encoding/variations/windows/utf8_utf16.cpp
-        encoding/variations/windows/utf8_utf16.h
-        encoding/variations/windows/cp1251_utf16.cpp
-        encoding/variations/windows/cp1251_utf16.h
-
-        # TODO: Determine platform here and add different files!
-        encoding/variations/linux/linux_recoding_base.h
-
-        encoding/variations/linux/cp1251_utf8.cpp
-        encoding/variations/linux/cp1251_utf8.h
-        encoding/variations/linux/utf8_utf16.cpp
-        encoding/variations/linux/utf8_utf16.h
-        encoding/variations/linux/cp1251_utf16.cpp
-        encoding/variations/linux/cp1251_utf16.h
 
 
         files/file_walker.cpp
@@ -142,8 +170,11 @@ set(PYTHONIC_SOURCES pythonic.h
 
         )
 
+foreach(this_source_file ${platform_specific_source_files})
+    list(APPEND PYTHONIC_SOURCES ${this_source_file})
+endforeach()
 
-# message("${PYTHONIC_SOURCES}")
+message("${PYTHONIC_SOURCES}")
 # ADD_MSVC_PRECOMPILED_HEADER("pch.h" "pch.cpp" PYTHONIC_SOURCES)
 
 add_library(pythonic ${PYTHONIC_SOURCES})

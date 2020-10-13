@@ -79,10 +79,12 @@ using namespace std::chrono_literals;
 namespace chrono = std::chrono;
 
 // Determine platform:
-#ifdef WIN32
+#ifdef _WIN32
     #define PYTHONIC_IS_WINDOWS
-#else
+#elif defined(__linux__)
     #define PYTHONIC_IS_LINUX
+#else
+	#error "Windows or Linux?"
 #endif
 
 // Include package for recoding:
