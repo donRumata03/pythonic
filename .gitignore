@@ -1,3 +1,7 @@
 cmake-build-debug/
 cmake-build-release/
 
+!cmake-build-debug/pythonic.lib
+!cmake-build-debug/pythonic_test.exe
+!cmake-build-release/pythonic.lib
+!cmake-build-release/pythonic_test.exe
