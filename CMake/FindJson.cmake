@@ -11,6 +11,7 @@ set (Json_possible_dirs
         "D:/libraries/json"
         "${CMAKE_CURRENT_SOURCE_DIR}"
         "${CMAKE_CURRENT_SOURCE_DIR}/json"
+        "~/dev/lib/json"
 )
 
 set(Json_possible_locations)
