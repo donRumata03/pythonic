@@ -30,8 +30,6 @@ int main()
 
 	// system("chcp 65001");
     set_utf8_in_console();
-    // constexpr auto index = get_last_slash_index(_pythonic_pch_file_path);
-	pythonic_base_dir[11] = 0;
     std::cout << pythonic_base_dir << std::endl;
 
 	/// Encoding
@@ -53,6 +51,7 @@ int main()
 
 	// test_path_joining();
 	// test_file_size();
+	test_from_fs_path_reading();
 	// test_folder_size();
 	// test_lsdir();
 	// test_fs_current_path();

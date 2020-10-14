@@ -11,15 +11,17 @@
 #include "maths/numpyic.h"
 #include "displaying/type_printer.h"
 
-constexpr const char* data_filename = R"(D:\pythonic\plotting\plot_data.json)";
+// constexpr const char* data_filename = R"(D:\pythonic\plotting\plot_data.json)";
+
+const fs::path plot_data_path = fs::path{pythonic_base_dir} / "plotting" / "plot_data.json";
 
 void add_pairs_to_plot(const pms &points, const plot_params &params)
 {
 	json result = {};
 
-	if (fs::exists(std::string(data_filename))) {
+	if (fs::exists(plot_data_path)) {
 		try {
-			result = json::parse(*read_file(data_filename));
+			result = json::parse(*read_file(plot_data_path));
 		} catch (json::exception & e) {
 			std::cerr << "Can`t parse json file with plots => ignoring its contents!" << std::endl;
 		}
@@ -42,14 +44,14 @@ void add_pairs_to_plot(const pms &points, const plot_params &params)
 		result["plots"].push_back(this_json);
 	else result["plots"] = json::array({ this_json });
 
-	write_file(result.dump(4), recode::from_utf8_to_utf16(data_filename));
+	write_file(result.dump(4), plot_data_path);
 }
 
 
 
 void clear_plot()
 {
-	fs::remove(std::string(data_filename));
+	fs::remove(plot_data_path);
 }
 
 void show_plot(const plot_common_params& common_params)
@@ -64,7 +66,7 @@ void show_plot(const plot_common_params& common_params)
 	// if (!output_filename.empty() || log_x || log_y)
 	// {
 		// Inform Python to output plot to file by adding the filename to json
-		auto file_read_attempt = read_file(data_filename);
+		auto file_read_attempt = read_file(plot_data_path);
 		json j;
 		if (file_read_attempt)
 			j = json::parse(*file_read_attempt);
@@ -78,7 +80,7 @@ void show_plot(const plot_common_params& common_params)
 		if (!output_filename.empty()) j["output_filename"] = output_filename;
 		if (!window_title.empty()) j["window_title"] = window_title;
 
-		write_file(j.dump(4), recode::from_utf8_to_utf16(data_filename));
+		write_file(j.dump(4), plot_data_path);
 	// }
 
 	system(go_to_python_dir_command);

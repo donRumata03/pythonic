@@ -61,9 +61,7 @@
 #include <codecvt>
 #include <condition_variable>
 #include <forward_list>
-#include <future>
 #include <initializer_list>
-#include <mutex>
 #include <random>
 #include <ratio>
 #include <regex>
@@ -79,6 +77,15 @@
 #include <ciso646>
 #include <shared_mutex>
 #include <compare>
+
+// Sytem API:
+#include <filesystem>
+
+// Multithreading:
+#include <atomic>
+#include <condition_variable>
+#include <mutex>
+#include <future>
 
 
 // Some cool supported C++20 stuff:
@@ -113,8 +120,8 @@ namespace chrono = std::chrono;
 // constexpr char* const _pythonic_pch_file_path = __FILE__;
 // constexpr char* const pythonic_base_dir = get_path_folder(_pythonic_pch_file_path);
 
-constexpr char* const _pythonic_pch_file_path = __FILE__;
-inline std::string pythonic_base_dir = get_path_folder(_pythonic_pch_file_path);
+constexpr const char* pythonic_pch_file_path = __FILE__;
+inline std::filesystem::path pythonic_base_dir = get_path_folder(pythonic_pch_file_path);
 
 
 #undef min

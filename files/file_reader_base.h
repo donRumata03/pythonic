@@ -7,6 +7,23 @@
 #include "pythonic_pch.h"
 #include "encoding/encoder.h"
 
+template<class FileNameType> std::string get_utf_string_from_generic_filename(const FileNameType& filename) {
+	if constexpr (std::is_same_v<FileNameType, std::string>) {
+		// Already utf8!
+		return filename;
+	}
+	else if constexpr (std::is_same_v<FileNameType, std::wstring>) {
+		// UTF-16 => convert to utf8:
+		return recode::to_utf8(filename);
+	}
+	else if constexpr (std::is_same_v<FileNameType, std::filesystem::path>) {
+		return filename.string();
+	}
+	else {
+		static_assert(false, "Bad type");
+	}
+}
+
 
 template<class FileSystemStringType>
 std::optional<std::string> base_read_file(const FileSystemStringType &filename)
@@ -25,15 +42,16 @@ std::optional<std::string> base_read_file(const FileSystemStringType &filename)
         return contents;
     }
 
-    std::string utf_recoded_filename;
-    if constexpr (std::is_same_v<std::string, FileSystemStringType>) {
-        // Linux => already in utf8
-        utf_recoded_filename = filename;
-    }
-    else {
-        utf_recoded_filename = recode::to_utf8(filename);
-    }
-    std::cerr << "Failed to read file \"" << utf_recoded_filename << "\": The file probably doesn`t exist!";
+//    std::string utf_recoded_filename;
+//    if constexpr (std::is_same_v<std::string, FileSystemStringType>) {
+//        // Linux => already in utf8
+//        utf_recoded_filename = filename;
+//    }
+//    else {
+//        utf_recoded_filename = recode::to_utf8(filename);
+//    }
+//
+    std::cerr << "Failed to read file \"" << get_utf_string_from_generic_filename(filename) << "\": The file probably doesn`t exist!";
 
     return {};
 }
@@ -65,11 +83,27 @@ uint64_t base_file_size_in_bytes(const FileSystemStringType &filename)
 
 ////////////////////////////////////////////////////////////////////////
 
+// Instantiate for fs::path:
+inline auto read_file(const std::filesystem::path& filename) {
+	return base_read_file(filename);
+}
+
+inline auto write_file(const std::string& data, const std::filesystem::path& filename) {
+	base_write_file(data, filename);
+}
+
+inline auto file_size_in_bytes(const std::filesystem::path& filename) {
+	return base_file_size_in_bytes(filename);
+}
+
+////////////////////////////////////////////////////////////////////////
+
 enum class given_filename_encoding {
 	cp1251,
 	utf8
 };
 
+/// Define interface:
 template<given_filename_encoding filename_encoding>
 std::optional<std::string> read_file(const std::string &filename);
 

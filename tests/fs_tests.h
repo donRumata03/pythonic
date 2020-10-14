@@ -32,6 +32,13 @@ inline void test_file_size(){
 	std::cout << fs_file_size(recode::to_utf8(w)) << std::endl;
 }
 
+inline void test_from_fs_path_reading() {
+	fs::path path = pythonic_base_dir / "tests" / "encoding_tests" / "test_files" / "Привет-cp1251.txt";
+	std::cout << path << " " << fs::exists(path) << std::endl;
+
+	std::cout << file_size_in_bytes<given_filename_encoding::utf8>(path.string()) << std::endl;
+}
+
 inline void test_folder_size()
 {
 	// std::wstring w = from_utf8_to_utf16(R"(D:\Projects\Tests\enc_test\русская_папка)");

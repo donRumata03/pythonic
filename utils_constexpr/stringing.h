@@ -22,7 +22,7 @@ inline constexpr unsigned long long get_last_slash_index(const char* const strin
 	return res;
 }
 
-inline std::string get_path_folder(char* const child_filename) {
+inline std::string get_path_folder(const char* child_filename) {
 	/// D:/data/file.txt -> D:/data/
 	/// D:\data\file.txt -> D:\data\
 
