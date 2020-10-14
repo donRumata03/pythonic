@@ -62,8 +62,8 @@ namespace recode
 	/// Encoding determination:
 	bool is_only_ASCII(const std::string &string);
 	// bool is_valid_utf8(const char *string);
-	bool is_valid_utf8(const std::string &string);
-	bool is_valid_utf16(const std::string &some_string);
+	// bool is_valid_utf8(const std::string &string);
+	// bool is_valid_utf16(const std::string &some_string);
 
 	encoding determine_encoding(const std::string &some_string);
 

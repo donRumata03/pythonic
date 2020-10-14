@@ -30,7 +30,9 @@ int main()
 
 	// system("chcp 65001");
     set_utf8_in_console();
-
+    // constexpr auto index = get_last_slash_index(_pythonic_pch_file_path);
+	pythonic_base_dir[11] = 0;
+    std::cout << pythonic_base_dir << std::endl;
 
 	/// Encoding
 
@@ -40,7 +42,7 @@ int main()
 	// test_reading_file_with_russian_name();
 	// test_cp1251_file_writing();
 	// test_cp1251_file_reading();
-	test_converting_bad_unicode_characters_to_cp1251();
+	// test_converting_bad_unicode_characters_to_cp1251();
 	// test_enc_detecting();
 	// auto_recode_test();
 	// auto_lower_upper_test();

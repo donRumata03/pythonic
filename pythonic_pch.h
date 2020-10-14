@@ -78,14 +78,14 @@
 #include <optional>
 #include <ciso646>
 #include <shared_mutex>
+#include <compare>
+
 
 // Some cool supported C++20 stuff:
-#if PYTHONIC_IS_WINDOWS
-// #include <ranges>
-    #include <compare>
+#ifdef PYTHONIC_IS_WINDOWS
+	// #include <ranges>
 #else // Linux:
     // #include <ranges>
-    #include <compare>
 #endif
 
 #include <json.hpp>
@@ -106,6 +106,15 @@ namespace chrono = std::chrono;
     #include "iconv.h"
 #endif
 
+// Set base path:
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+#include "utils_constexpr/stringing.h"
+
+// constexpr char* const _pythonic_pch_file_path = __FILE__;
+// constexpr char* const pythonic_base_dir = get_path_folder(_pythonic_pch_file_path);
+
+constexpr char* const _pythonic_pch_file_path = __FILE__;
+inline std::string pythonic_base_dir = get_path_folder(_pythonic_pch_file_path);
 
 
 #undef min
