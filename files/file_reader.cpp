@@ -8,26 +8,6 @@
 #include "encoding/encoder.h"
 // #include "encoding/win32_examples/utf8_utf16_conversion.h"
 
-std::optional<std::string> read_file(const std::wstring &filename)
-{
-	std::ifstream in(filename, std::ios::in | std::ios::binary);
-
-	if (in)
-	{
-		std::string contents;
-
-		in.seekg(0, std::ios::end);
-		contents.resize(static_cast<const unsigned int>(in.tellg()));
-		in.seekg(0, std::ios::beg);
-		in.read(&contents[0], contents.size());
-		in.close();
-		return contents;
-	}
-
-	std::cerr << "Failed to read file \"" << recode::to_utf8(filename) << "\": The file probably doesn`t exist!";
-
-	return {};
-}
 
 void write_file(const std::string &data, const std::wstring &filename)
 {

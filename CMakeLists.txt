@@ -156,7 +156,7 @@ set(PYTHONIC_SOURCES pythonic.h
         n_dim/nd_array.inl.h
         timing/easy_measurer.h
 
-        )
+        files/file_reader_base.h)
 
 foreach(this_source_file ${platform_specific_source_files})
     list(APPEND PYTHONIC_SOURCES ${this_source_file})
