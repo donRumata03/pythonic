@@ -4,6 +4,16 @@
 
 #pragma once
 
+// Determine platform:
+#ifdef _WIN32
+    #define PYTHONIC_IS_WINDOWS
+#elif defined(__linux__)
+    #define PYTHONIC_IS_LINUX
+#else
+    #error "Windows or Linux?"
+#endif
+
+
 #include <cassert>
 
 #include <cmath>
@@ -68,7 +78,14 @@
 #include <optional>
 #include <ciso646>
 #include <shared_mutex>
-#include <compare>
+
+// Some cool supported C++20 stuff:
+#if PYTHONIC_IS_WINDOWS
+// #include <ranges>
+    #include <compare>
+#else
+    // #include <ranges>
+#endif
 
 #include <json.hpp>
 
@@ -78,14 +95,6 @@ using namespace std::string_literals;
 using namespace std::chrono_literals;
 namespace chrono = std::chrono;
 
-// Determine platform:
-#ifdef _WIN32
-    #define PYTHONIC_IS_WINDOWS
-#elif defined(__linux__)
-    #define PYTHONIC_IS_LINUX
-#else
-	#error "Windows or Linux?"
-#endif
 
 // Include package for recoding:
 #ifdef PYTHONIC_IS_WINDOWS

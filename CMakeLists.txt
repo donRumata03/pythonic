@@ -66,6 +66,8 @@ if (WIN32)
             encoding/variations/windows/utf8_utf16.h
             encoding/variations/windows/cp1251_utf16.cpp
             encoding/variations/windows/cp1251_utf16.h
+
+            encoding/variations/windows/utils.h
             )
 endif (WIN32)
 
@@ -89,12 +91,13 @@ if (UNIX)
             encoding/variations/linux/cp1251_utf16.cpp
             encoding/variations/linux/cp1251_utf16.h
 
+            encoding/variations/linux/utils.h
             )
 
 endif (UNIX)
 
 
-include_directories(/)
+include_directories(${CMAKE_CURRENT_LIST_DIR})
 
 set(PYTHONIC_SOURCES pythonic.h
 

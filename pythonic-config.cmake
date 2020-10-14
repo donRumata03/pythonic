@@ -76,6 +76,8 @@ endif()
 
 set(pythonic_include_directories ${actual_pythonic_dir})
 
+# Find Json:
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/CMake")
 find_package(Json REQUIRED)
 list(APPEND pythonic_include_directories ${Json_include_directories})
 message("Pythonic include directories are: ${pythonic_include_directories}")

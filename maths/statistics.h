@@ -11,6 +11,7 @@
 
 #include <unordered_map>
 #include <map>
+#include <cmath>
 
 
 #include "simple_functions.h"
@@ -145,17 +146,17 @@ template<class T, class E> std::vector<std::pair<T, E>> get_sorted_elements(cons
 }
 
 template<class T, class E> std::vector<std::pair<T, E>> get_sorted_elements(const std::map<T, E>& m) {
-	vector<pair<T, E>> res;
+	std::vector<std::pair<T, E>> res;
 	for (auto& p : m) res.emplace_back(p);
 
-	sort(res.begin(), res.end(), [](pair<T, E>& p, pair<T, E>& e) { return p.second > e.second; });
+	sort(res.begin(), res.end(), [](std::pair<T, E>& p, std::pair<T, E>& e) { return p.second > e.second; });
 
 	return res;
 }
 
 
 template<class T> std::vector<std::pair<T, size_t>> get_sorted_elements(const std::vector<T>& elements) {
-	unordered_map<T, size_t> res;
+    std::unordered_map<T, size_t> res;
 
 	for (auto& el : elements) ++res[el];
 	return get_sorted_elements(res);
@@ -173,7 +174,7 @@ template<class T> std::unordered_map<T, size_t> make_Counter(const std::vector<T
 template<class mean_functor, class ... Args> auto logomean(const std::vector<double>& values, Args ... args) -> decltype(mean_functor()(values, args...))
 {
 	std::vector<double> fake_values = values;
-	for (auto& val : fake_values) { val = log(val); }
+	for (auto& val : fake_values) { val = std::log(val); }
 	// if constexpr (typeid(decltype(mean_functor()(fake_values, args...))) == typeid(double))
 	return exp(mean_functor()(fake_values, args...));
 	/*if constexpr (typeid(decltype(mean_functor()(fake_values, args...))) == typeid(vector<double>))
@@ -186,7 +187,7 @@ template<class mean_functor, class ... Args> auto logomean(const std::vector<dou
 
 template<class mean_functor, class ... Args> double expomean(const std::vector<double>& values, Args ... args)
 {
-	vector<double> fake_values = values;
+	std::vector<double> fake_values = values;
 	for (auto& val : fake_values) val = exp(val);
 	return log(mean_functor()(fake_values, args...));
 }
@@ -205,7 +206,7 @@ inline std::vector<double> dropout_data_outliers(const std::vector<double>& valu
 	}
 
 	std::vector<double> res;
-	for (auto& r : values) 	if (abs(r - mediana) < n_sigma) res.push_back(r);
+	for (auto& r : values) 	if (std::abs(r - mediana) < n_sigma) res.push_back(r);
 	return res;
 }
 

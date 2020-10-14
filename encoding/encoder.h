@@ -12,10 +12,13 @@
     #include "variations/windows/cp1251_utf8.h"
     #include "variations/windows/utf8_utf16.h"
     #include "encoding/win32_examples/utf8_utf16_conversion.h"
+    #include "variations/windows/utils.h"
 #elif defined(PYTHONIC_IS_LINUX)
     #include "variations/linux/cp1251_utf16.h"
     #include "variations/linux/cp1251_utf8.h"
     #include "variations/linux/utf8_utf16.h"
+    #include "variations/linux/utils.h"
+
 #else
         #error "Windows or Linux?"
 #endif
