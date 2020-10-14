@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include <files/file_reader.h>
+#include <files/file_reader_windows.h>
 #include <encoding/encoder.h>
 
 #include <string>

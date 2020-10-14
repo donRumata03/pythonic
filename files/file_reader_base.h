@@ -5,11 +5,11 @@
 #pragma once
 
 #include "pythonic_pch.h"
-#include ""
+#include "encoding/encoder.h"
 
 
 template<class FileSystemStringType>
-std::optional<std::string> read_file(const FileSystemStringType &filename)
+std::optional<std::string> base_read_file(const FileSystemStringType &filename)
 {
     std::ifstream in(filename, std::ios::in | std::ios::binary);
 
@@ -31,9 +31,51 @@ std::optional<std::string> read_file(const FileSystemStringType &filename)
         utf_recoded_filename = filename;
     }
     else {
-        utf_recoded_filename = recode::fr
+        utf_recoded_filename = recode::to_utf8(filename);
     }
-    std::cerr << "Failed to read file \"" << recode::to_utf8(filename) << "\": The file probably doesn`t exist!";
+    std::cerr << "Failed to read file \"" << utf_recoded_filename << "\": The file probably doesn`t exist!";
 
     return {};
 }
+
+template<class FileSystemStringType>
+void base_write_file(const std::string &data, const FileSystemStringType &filename)
+{
+	std::ofstream out_file(filename);
+	out_file << data;
+	out_file.close();
+}
+
+template<class FileSystemStringType>
+uint64_t base_file_size_in_bytes(const FileSystemStringType &filename)
+{
+	uint64_t beg;
+	uint64_t end;
+	std::ifstream f (filename);
+
+	beg = f.tellg();
+	f.seekg(0, std::ios::end);
+	end = f.tellg();
+	f.seekg(0, std::ios::beg);
+	f.close();
+
+	return end - beg;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+
+enum class given_filename_encoding {
+	cp1251,
+	utf8
+};
+
+template<given_filename_encoding filename_encoding>
+std::optional<std::string> read_file(const std::string &filename);
+
+template<given_filename_encoding filename_encoding>
+void write_file(const std::string &data, const std::string &filename);
+
+template<given_filename_encoding filename_encoding>
+uint64_t file_size_in_bytes(const std::string &filename);
+

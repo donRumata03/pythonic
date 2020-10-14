@@ -61,6 +61,8 @@ if (WIN32)
             encoding/variations/windows/cp1251_utf16.h
 
             encoding/variations/windows/utils.h
+            files/file_reader_windows.h
+            files/file_reader_windows.cpp
             )
 endif (WIN32)
 
@@ -78,6 +80,8 @@ if (UNIX)
             encoding/variations/linux/cp1251_utf16.h
 
             encoding/variations/linux/utils.h
+
+            files/file_reader_linux.cpp
             )
 
 endif (UNIX)
@@ -92,9 +96,6 @@ set(PYTHONIC_SOURCES pythonic.h
 
         encoding/encoder.cpp
         encoding/encoder.h
-
-        files/file_reader.cpp
-        files/file_reader.h
 
         other/typedefs.h
 
@@ -157,7 +158,11 @@ set(PYTHONIC_SOURCES pythonic.h
         n_dim/nd_array.inl.h
         timing/easy_measurer.h
 
-        files/file_reader_base.h utils_constexpr/stringing.h)
+        files/file_reader_base.h
+
+        utils_constexpr/stringing.h
+
+        files/file_reader_linux.h files/file_reader.h)
 
 foreach(this_source_file ${platform_specific_source_files})
     list(APPEND PYTHONIC_SOURCES ${this_source_file})
