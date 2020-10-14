@@ -23,12 +23,11 @@ inline constexpr unsigned long long get_last_slash_index(const char* const strin
 }
 
 inline std::string get_path_folder(char* const child_filename) {
-	// D:/data/file.txt -> D:/data/
-	// D:\data\file.txt -> D:\data\
+	/// D:/data/file.txt -> D:/data/
+	/// D:\data\file.txt -> D:\data\
 
+	// size_t last_slash_index = get_last_slash_index(child_filename);
 	std::string res = child_filename;
-
-	size_t last_slash_index = get_last_slash_index(child_filename);
 	res.erase(res.begin() + res.find_last_of("\\/"), res.end());
 
 	return res;
