@@ -189,9 +189,3 @@ namespace recode
 
 
 }
-
-
-void set_utf8 ()
-{
-	SetConsoleOutputCP(CP_UTF8);
-}

@@ -2,9 +2,7 @@
 // Created by vova on 14.10.2020.
 //
 
-#ifndef PYTHONIC_TEST_UTILS_H
-#define PYTHONIC_TEST_UTILS_H
-
+#pragma once
 #include "pythonic_pch.h"
 
 inline bool is_valid_utf16(const std::wstring &some_string)
@@ -37,4 +35,3 @@ inline bool is_valid_utf8(const std::string &string)
     return utf16Length != 0;
 }
 
-#endif //PYTHONIC_TEST_UTILS_H

@@ -83,8 +83,9 @@
 #if PYTHONIC_IS_WINDOWS
 // #include <ranges>
     #include <compare>
-#else
+#else // Linux:
     // #include <ranges>
+    #include <compare>
 #endif
 
 #include <json.hpp>

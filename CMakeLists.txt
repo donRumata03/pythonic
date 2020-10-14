@@ -1,30 +1,29 @@
 cmake_minimum_required(VERSION 3.16)
 
-#####################################################################################
-# Macro for precompiled headers:
-MACRO(ADD_MSVC_PRECOMPILED_HEADER PrecompiledHeader PrecompiledSource SourcesVar)
-    IF(MSVC)
-        GET_FILENAME_COMPONENT(PrecompiledBasename ${PrecompiledHeader} NAME_WE)
-        SET(PrecompiledBinary "${CMAKE_CURRENT_BINARY_DIR}/${PrecompiledBasename}.pch")
-        SET(Sources ${${SourcesVar}})
+if (WIN32)
+    message("Platform: Windows")
 
-        SET_SOURCE_FILES_PROPERTIES(
-                ${PrecompiledSource}    PROPERTIES
-                COMPILE_FLAGS "/Yc\"${PrecompiledHeader}\" /Fp\"${PrecompiledBinary}\""
-                OBJECT_OUTPUTS "${PrecompiledBinary}"
-        )
+    if(MSVC)
+        message("Compiler: MSVC")
+    else()
+        message("WTF compiler isn't MSVC on Windows??")
+    endif()
+endif()
 
-        SET_SOURCE_FILES_PROPERTIES(
-                ${Sources} PROPERTIES
-                COMPILE_FLAGS "/Yu\"${PrecompiledBinary}\" /FI\"${PrecompiledBinary}\" /Fp\"${PrecompiledBinary}\""
-                OBJECT_DEPENDS "${PrecompiledBinary}"
-        )
-    ENDIF(MSVC)
+if (UNIX)
+    message("Platform: *nix")
+    # message("Compiler: ${CMAKE_CXX_COMPILER_ARCHITECTURE_ID}")
 
-    # Add precompiled header to SourcesVar
-    LIST(APPEND ${SourcesVar} ${PrecompiledSource})
-ENDMACRO()
-############################################################################################################
+    set(CMAKE_CXX_COMPILER "/usr/bin/g++-10")
+    set(CMAKE_C_COMPILER "/usr/bin/gcc-10")
+
+    if(CMAKE_CXX_COMPILER_ STREQUAL "GNU")
+        message("Compiler: GCC")
+        message("I hope, the version is 10: otherwise it won't compile!")
+    else()
+        message("I hope, the compiler is GCC and its version is 10 (or higher?): otherwise it won't compile!")
+    endif()
+endif()
 
 
 macro(print_target_libraries target_name)
@@ -47,13 +46,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 # Platform Specific stuff:
 if (WIN32)
-    message("Platform: Windows")
-
-    if(MSVC)
-        message("Compiler: MSVC")
-    else()
-        message("WTF compiler isn't MSVC on Windows??")
-    endif()
 
     set(platform_specific_source_files
 
@@ -72,13 +64,6 @@ if (WIN32)
 endif (WIN32)
 
 if (UNIX)
-    message("Platform: *nix")
-
-    if(CMAKE_COMPILER_IS_GNUCC)
-        message("Compiler: GCC")
-    else()
-        message("WTF compiler isn't GCC in Linux??")
-    endif()
 
     set(platform_specific_source_files
 
