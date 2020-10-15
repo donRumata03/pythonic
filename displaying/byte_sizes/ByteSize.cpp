@@ -164,7 +164,7 @@ namespace hvn3 {
 	}
 	ByteSize ByteSize::MaxValue() {
 
-		return ByteSize(DBL_MAX);
+		return ByteSize(std::numeric_limits<double>::max());
 
 	}
 

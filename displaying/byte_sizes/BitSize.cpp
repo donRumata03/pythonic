@@ -146,7 +146,7 @@ namespace hvn3 {
 
 		std::stringstream stream;
 
-		stream << std::fixed << std::setprecision(precision) << LargestUnitValue() << ' ' << LargestUnitSymbol();
+		stream << std::fixed << std::setprecision(int(precision)) << LargestUnitValue() << ' ' << LargestUnitSymbol();
 
 		return stream.str();
 
@@ -159,7 +159,7 @@ namespace hvn3 {
 	}
 	BitSize BitSize::MaxValue() {
 
-		return BitSize(DBL_MAX);
+		return BitSize(std::numeric_limits<double>::max());
 
 	}
 

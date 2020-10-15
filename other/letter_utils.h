@@ -7,6 +7,7 @@
 #include "pythonic_pch.h"
 
 #include "encoding/encoder.h"
+#include <cwctype>
 
 /// Common:
 template <class Func> std::string encoding_safe_apply(const std::string& string){
@@ -45,6 +46,8 @@ inline std::string to_lower(const std::string& string)  {
 /// To upper:
 inline std::wstring to_upper(const std::wstring& string){
 	std::wstring res = string;
+
+	
 	CharUpperW(res.data());
 
 	return res;
