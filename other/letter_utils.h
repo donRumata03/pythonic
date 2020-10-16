@@ -9,6 +9,8 @@
 #include "encoding/encoder.h"
 #include <cwctype>
 
+#include <cwctype>
+
 /// Common:
 template <class Func> std::string encoding_safe_apply(const std::string& string){
 	encoding original_enc = recode::determine_encoding(string);
@@ -29,8 +31,12 @@ template <class Func> std::string encoding_safe_apply(const std::string& string)
 /// To lower:
 inline std::wstring to_lower(const std::wstring& string){
 	std::wstring res = string;
-	CharLowerW(res.data());
 
+#ifdef PYTHONIC_IS_WINDOWS
+	CharLowerW(res.data());
+#else
+	for (auto& ch : res) ch = towlower(ch);
+#endif
 	return res;
 }
 
@@ -46,9 +52,11 @@ inline std::string to_lower(const std::string& string)  {
 /// To upper:
 inline std::wstring to_upper(const std::wstring& string){
 	std::wstring res = string;
-
-	
+#ifdef PYTHONIC_IS_WINDOWS
 	CharUpperW(res.data());
+#else
+	for (auto& ch : res) ch = towupper(ch);
+#endif
 
 	return res;
 }

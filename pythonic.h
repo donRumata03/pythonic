@@ -47,7 +47,7 @@
 
 #include "other/letter_utils.h"
 #include "other/python_builtins.h"
-#include "other/thread_utils.h"
+#include "threading/thread_utils.h"
 
 #include "timing/Timer.h"
 #include "timing/delayed_launcher.h"
