@@ -1,10 +1,10 @@
 #include "BitSize.h"
 
-#include <algorithm>
-#include <limits>
-#include <sstream>
-#include <iomanip>
-#include <cassert>
+//#include <algorithm>
+//#include <limits>
+//#include <sstream>
+//#include <iomanip>
+//#include <cassert>
 
 #define BITS_IN_BYTE 8.
 #define BYTES_IN_KIBIBIT 128.

@@ -1,6 +1,5 @@
 #pragma once
 #include "ByteSizeCommon.h"
-#include <string>
 
 namespace hvn3 {
 

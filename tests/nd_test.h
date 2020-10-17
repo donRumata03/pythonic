@@ -46,7 +46,7 @@ inline void print_nd_array_test(){
 	for (size_t i = 0; i < arr.dim_vals.front(); i++) {
 		for (size_t j = 0; j < arr.dim_vals[1]; j++) {
 			for (size_t k = 0; k < arr.dim_vals.back(); k++) {
-				arr[{ i, j, k }] = double(i + j + k) * random();
+				arr[{ i, j, k }] = double(i + j + k) * pythonic_random();
 			}
 		}
 	}
@@ -83,7 +83,7 @@ inline void nd_slicing_test(){
 inline void nd_for_eaches_test(){
 	nd_array<double> arr({3, 3, 3});
 
-	arr.transform([](double d) -> double { return d + random() * 18.; });
+	arr.transform([](double d) -> double { return d + pythonic_random() * 18.; });
 
 	arr.for_each([](double d){ std::cout << d << std::endl; });
 

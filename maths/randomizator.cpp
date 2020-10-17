@@ -34,7 +34,7 @@ double random(std::mt19937 &gen)
 
 double randval(const double from, const double to)
 {
-	return from + random() * (to - from);
+	return from + pythonic_random() * (to - from);
 }
 
 double randval(const double from, const double to, std::mt19937 &gen)
