@@ -91,7 +91,6 @@ inline void nd_for_eaches_test(){
 	std::cout << arr << std::endl;
 
 	arr.indexed_for_each([](const std::pair<std::vector<size_t>, double>& d) { std::cout << d << std::endl; });
-
 }
 
 inline void test_nd_array_sum(){
