@@ -27,20 +27,6 @@ if (UNIX)
 endif()
 
 
-macro(print_target_libraries target_name)
-    message(___________________________________________)
-    get_target_property(OUT ${target_name} LINK_LIBRARIES)
-    if (${OUT} STREQUAL OUT-NOTFOUND)
-        message(No\ linked\ libraries\ found\ for\ project\ "${target_name}"\ :\()
-    else()
-        message(Here\ are\ the\ libraries\ linked\ to\ project\ "${target_name}":)
-        message(STATUS ${OUT})
-
-    endif()
-
-message(___________________________________________)
-endmacro()
-
 ###########################################################################
 project(pythonic)
 set(CMAKE_CXX_STANDARD 20)
@@ -168,10 +154,20 @@ foreach(this_source_file ${platform_specific_source_files})
     list(APPEND PYTHONIC_SOURCES ${this_source_file})
 endforeach()
 
-# message("${PYTHONIC_SOURCES}")
-# ADD_MSVC_PRECOMPILED_HEADER("pch.h" "pch.cpp" PYTHONIC_SOURCES)
-
+# THE ACTUAL PYTHONIC:
 add_library(pythonic ${PYTHONIC_SOURCES})
+
+
+
+# Platform dependant libraries:
+if(WIN32)
+    # Pass
+else()
+    target_link_libraries(pythonic tbb)
+endif()
+
+
+
 
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 
