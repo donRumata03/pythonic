@@ -10,10 +10,11 @@ inline void test_thread_distribution ()
 {
 	//                    tasks | threads
 	std::vector<std::pair<size_t, size_t>> examples = {
-			{ 0, 0 },
-			{ 1, 1 },
-			{ 1, 1 },
-			{ 1, 1 },
+						// { 0, 0 },
+						{ 1, 1 },
+						{ 100, 1 },
+						{ 1, 2 },
+						{ 6, 12 },
 
 
 	};
