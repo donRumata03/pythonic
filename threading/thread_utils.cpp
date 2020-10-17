@@ -3,11 +3,22 @@
 //
 
 #include "thread_utils.h"
+#include "displaying/print_stl.h"
 
-std::vector<std::pair<size_t, size_t>> adaptively_distribute_task_ranges(size_t task_number, size_t group_number) {
-	std::vector<std::pair<size_t, size_t>> res(group_number);
+static void improve_distribution (size_t task_number, std::vector<std::pair<size_t, size_t>> &distribution_to_improve)
+{
+	distribution_to_improve.back().second = task_number;
 
-	// double
+	bool flag = false;
+	for (auto& p : distribution_to_improve) {
+		if (!flag) {
+			if (p.second >= task_number) {
+				p.second = task_number;
+				flag = true;
+			}
+		}
+		else p = {0, 0};
+	}
 }
 
 
@@ -30,6 +41,31 @@ static bool validate_task_range_distribution(size_t task_number, size_t group_nu
 }
 
 
+std::vector<std::pair<size_t, size_t>> adaptively_distribute_task_ranges(size_t task_number, size_t group_number) {
+	std::vector<std::pair<size_t, size_t>> res(group_number);
+
+	auto current_value = 0ULL;
+	for (size_t group_index = 0; group_index < group_number; ++group_index) {
+		res[group_index].first = current_value;
+		size_t tasks_left = task_number - current_value; // Including the tasks for this one
+		size_t groups_left = group_number - group_index; // Including this group
+
+		auto this_delta = size_t(std::round(double(tasks_left) / groups_left));
+		current_value += this_delta;
+
+		res[group_index].second = current_value;
+	}
+
+	// std::cout << res << std::endl;
+	// improve_distribution(task_number, res);
+
+	// std::cout << res << std::endl;
+
+	return res;
+}
+
+
+
 std::vector<std::pair<size_t, size_t>> distribute_task_ranges (size_t task_number, size_t group_number)
 {
 	// Do some stuff:
@@ -45,9 +81,6 @@ std::vector<std::pair<size_t, size_t>> distribute_task_ranges (size_t task_numbe
 
 	return res;
 }
-
-
-
 
 std::vector<std::pair<size_t, size_t>> dummy_distribute_task_ranges (size_t task_number, size_t group_number)
 {
@@ -76,18 +109,9 @@ std::vector<std::pair<size_t, size_t>> dummy_distribute_task_ranges (size_t task
 		// prev_end = cut(prev_end, 0, task_number);
 		res[index].second = prev_end;
 	}
-	res.back().second = task_number;
 
-	bool flag = false;
-	for (auto& p : res) {
-		if (!flag) {
-			if (p.second >= task_number) {
-				p.second = task_number;
-				flag = true;
-			}
-		}
-		else p = {0, 0};
-	}
+
+	improve_distribution(task_number, res);
 
 	return res;
 }

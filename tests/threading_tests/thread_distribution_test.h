@@ -16,14 +16,17 @@ inline void test_thread_distribution ()
 						{ 1, 2 },
 						{ 6, 12 },
 						{ 12, 6 },
-						{ 11, 10 }
+						{ 11, 10 },
+						{ 15, 10 },
+						{ 13, 20 },
+						{ 101, 100 },
 
 	};
 
 	std::cout << "Testing thread distributing" << std::endl;
 
 	for (auto& example : examples) {
-		std::vector<std::pair<size_t, size_t>> ranges = dummy_distribute_task_ranges(example.first, example.second);
+		std::vector<std::pair<size_t, size_t>> ranges = distribute_task_ranges(example.first, example.second);
 		std::cout << example << "\t : \t" << ranges << std::endl;
 	}
 }
