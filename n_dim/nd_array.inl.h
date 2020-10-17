@@ -67,7 +67,7 @@ template < class T >
 nd_array<T> &nd_array<T>::operator= (const std::initializer_list<T> &list)
 {
 	// TODO!
-	return nd_array(0, std::vector());
+	return *this;
 }
 
 
@@ -88,7 +88,7 @@ nd_array<T> &nd_array<T>::operator= (nd_array &&slice)
 {
 	// Move elements!
 	if (this != &slice){
-		return;
+
 	}
 	return *this;
 }

@@ -17,10 +17,10 @@ std::vector<double> uniform_distribute(const double from, const double to, size_
 	return distribute < std::uniform_real_distribution<double>, double, double, double >(from, to, samples);
 }
 
-double random()
+double pythonic_random()
 {
 	auto r = rand();
-	if (r == RAND_MAX) { /* std::cout << "I`s equal!" << std::endl; */ r--; }
+	if (r == RAND_MAX) { /* std::cout << "It's equal!" << std::endl; */ r--; }
 	return double(r) / RAND_MAX;
 }
 

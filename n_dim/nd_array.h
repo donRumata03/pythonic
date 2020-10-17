@@ -56,7 +56,7 @@ public:
 		nd_array<T> get_sliced_array(){
 			std::vector<size_t> slice_size;
 
-			for (auto& sh : m_shift) {
+			for (auto& sh : m_shifts) {
 				slice_size.emplace_back(sh.second - sh.first);
 			}
 

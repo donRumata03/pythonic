@@ -1,6 +1,5 @@
 #include <pythonic.h>
 #include <tests/encoding_tests/auto_decode_tests.h>
-#include "windows.h"
 
 #include "encoding_tests/file_reading_tests.h"
 #include "encoding_tests/simple_encoding_tests.h"

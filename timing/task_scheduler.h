@@ -47,7 +47,7 @@ public:
 
 public:
 	task_scheduler() : is_running_(true) {}
-	task_scheduler(task_scheduler const& other) = default;
+	task_scheduler(task_scheduler const& other) = delete;
 	task_scheduler(task_scheduler&& other) = delete;
 
 	task_scheduler& operator=(task_scheduler const& other) = delete;
@@ -87,7 +87,7 @@ public:
 	 */
 	template <typename TimerTask, typename ... Args>
 	std::future<void> schedule(Timestamp const& time, Period const& period, TimerTask task, Args... args) const {
-		return std::async(std::launch::async, [=]() {
+		return std::async(std::launch::async, [this, time, period, task, ...args = args]() {
 			auto start = std::chrono::time_point_cast<Timestamp::duration>(std::chrono::system_clock::now());
 			auto delay = std::chrono::duration_cast<Delay>(time - start);
 			std::this_thread::sleep_for(delay);
@@ -128,7 +128,7 @@ public:
 	 */
 	template <typename TimerTask, typename ... Args>
 	std::future<void> schedule(Delay const& delay, Period const& period, TimerTask task, Args... args) const {
-		return std::async(std::launch::async, [=]() {
+		return std::async(std::launch::async, [=, this]() {
 			std::this_thread::sleep_for(delay);
 			while (is_running_) {
 				std::invoke(task, args...);

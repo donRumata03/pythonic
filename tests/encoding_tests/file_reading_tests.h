@@ -4,8 +4,9 @@
 
 #pragma once
 
-#include <files/file_reader_windows.h>
 #include <encoding/encoder.h>
+
+#include <pythonic.h>
 
 #include <string>
 
@@ -13,6 +14,8 @@ using namespace recode;
 
 inline void test_utf8_utf16_russian_file_writing()
 {
+#ifdef PYTHONIC_IS_WINDOWS
+
 	std::string utf8_string = "Привет, мир!";
 
 	std::wstring utf16_string = win32::Utf8ToUtf16(utf8_string);
@@ -34,10 +37,14 @@ inline void test_utf8_utf16_russian_file_writing()
 
 	out_file.write(utf16_mem, utf16_string_size * 2);
 	out_file.close();
+
+#endif
 }
 
 inline void test_writing_file_with_russian_name()
 {
+#ifdef PYTHONIC_IS_WINDOWS
+
 	std::string utf8_encoded_filename = R"(D:\Projects\Tests\enc_test\русская_папка\русский_файл.txt)";
 	std::cout << utf8_encoded_filename << std::endl;
 
@@ -48,11 +55,14 @@ inline void test_writing_file_with_russian_name()
 	std::ofstream out_file(utf16_string);
 	out_file << new_file_contents;
 	out_file.close();
+#endif
 }
 
 
 inline void test_reading_file_with_russian_name()
 {
+#ifdef PYTHONIC_IS_WINDOWS
+
 	std::string utf8_encoded_filename = R"(D:\Projects\Tests\enc_test\русская_папка\файл с utf8 но руссим именем.txt)";
 	std::cout << "Trying to read a file with name: " << utf8_encoded_filename << std::endl;
 
@@ -68,5 +78,6 @@ inline void test_reading_file_with_russian_name()
 	std::string file_data = reading_try.value();
 
 	std::cout << "File data: " << file_data << std::endl;
+#endif
 }
 

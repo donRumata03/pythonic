@@ -20,7 +20,7 @@ template<class FileNameType> std::string get_utf_string_from_generic_filename(co
 		return filename.string();
 	}
 	else {
-		static_assert(false, "Bad type");
+		assert(false && "Bad type");
 	}
 }
 

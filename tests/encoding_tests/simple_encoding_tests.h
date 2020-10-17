@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <files/file_reader_windows.h>
 #include <encoding/encoder.h>
 
 #include <string>
@@ -87,6 +86,8 @@ inline void test_utf16_files(){
 
 inline void test_utf8_utf16_english_converting()
 {
+#ifdef PYTHONIC_IS_WINDOWS
+
 	std::wstring s1u16 = L"Hello, world!";
 	std::string s1u8 = win32::Utf16ToUtf8(s1u16);
 	std::wstring s1u16back = win32::Utf8ToUtf16(s1u8);
@@ -96,7 +97,7 @@ inline void test_utf8_utf16_english_converting()
 
 	std::cout << to_print << std::endl;
 	std::wcout << s1u16back << std::endl;
-
+#endif
 }
 
 

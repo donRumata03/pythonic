@@ -35,7 +35,8 @@ std::vector<double> uniform_distribute(double from, double to, size_t samples);
 
 
 
-double random();
+// double random();
+double pythonic_random();
 double random(std::mt19937& gen);
 double randval(double from, double to);
 double randval(double from, double to, std::mt19937& gen);

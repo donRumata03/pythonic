@@ -120,7 +120,7 @@ void add_function_to_plot(const std::function<double(double)> &function, const p
 
 			try {
 				function_res = function(x);
-				if (!isnan(function_res)) function_completed = true;
+				if (!std::isnan(function_res)) function_completed = true;
 			} catch (std::exception& e) {
 				if (!has_exception) {
 					std::cerr << "Exception occurred while adding function \"" << type_name<decltype(function)>()
@@ -132,7 +132,7 @@ void add_function_to_plot(const std::function<double(double)> &function, const p
 					has_exceptions = true;
 				}
 			}
-			if (function_completed && isnan(function_res)) std::cerr << "Function output is NaN for input " << x << " while plotting!" << std::endl;
+			if (function_completed && std::isnan(function_res)) std::cerr << "Function output is NaN for input " << x << " while plotting!" << std::endl;
 
 			if (function_completed) {
 				current_segment_points.emplace_back(x, function_res); // TODO!!!!!!!! have different graph parts not to link them using line!!!!!!!!!!!

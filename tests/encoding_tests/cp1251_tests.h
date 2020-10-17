@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include <files/file_reader_windows.h>
+#include <files/file_reader.h>
 #include <encoding/encoder.h>
 
 #include <string>
@@ -15,15 +15,16 @@ inline void test_cp1251_file_writing(){
 	std::string utf8_encoded_filename = R"(D:\Projects\Tests\enc_test\русская_папка\русский файл в кодировке cp1251.txt)";
 	std::cout << "Trying to write file with name: " << utf8_encoded_filename << std::endl;
 
-	std::wstring utf16_filename = win32::Utf8ToUtf16(utf8_encoded_filename);
+	// std::wstring utf16_filename = win32::Utf8ToUtf16(utf8_encoded_filename);
 
-	std::string new_file_contents_utf8 = "Тестовый файл с именем в кодировке cp1251.";
+	std::string new_file_contents_utf8 = "Тестовый файл с текстом в кодировке cp1251.";
 
-	std::string new_file_contents = to_cp1251(new_file_contents_utf8);
+	std::string new_file_contents = recode::to_cp1251(new_file_contents_utf8);
 
-	std::ofstream out_file(utf16_filename);
-	out_file << new_file_contents;
-	out_file.close();
+	write_file<given_filename_encoding::utf8>(new_file_contents, utf8_encoded_filename);
+	// std::ofstream out_file(utf16_filename);
+	// out_file << new_file_contents;
+	// out_file.close();
 }
 
 inline void test_cp1251_file_reading(){
@@ -31,11 +32,11 @@ inline void test_cp1251_file_reading(){
 	std::string utf8_encoded_filename = R"(D:\Literature_data\All_books\Толстой Лев\Война и мир Том 3 и 4\text.txt)";
 
 
-	std::cout << "Trying too read file with name: " << utf8_encoded_filename << std::endl;
+	std::cout << "Trying to read file with name: " << utf8_encoded_filename << std::endl;
 
-	std::wstring utf16_filename = win32::Utf8ToUtf16(utf8_encoded_filename);
+	// std::wstring utf16_filename = win32::Utf8ToUtf16(utf8_encoded_filename);
 
-	auto filesystem_response = read_file(utf16_filename);
+	auto filesystem_response = read_file<given_filename_encoding::utf8>(utf8_encoded_filename);
 
 	if(!filesystem_response){
 		std::cout << "Cannot read the file!" << std::endl;
@@ -44,13 +45,15 @@ inline void test_cp1251_file_reading(){
 
 	std::string cp1251_file_content = *filesystem_response;
 
-	std::string utf8_encoded_file_content = to_utf8(cp1251_file_content);
+	std::string utf8_encoded_file_content = recode::to_utf8(cp1251_file_content);
 
 	std::cout << "File contents: " << utf8_encoded_file_content << std::endl;
 }
 
 inline std::string test_to_cp1251(const std::string &utf8_string)
 {
+#ifdef PYTHONIC_IS_WINDOWS
+
 	if (utf8_string.empty()) {
 
 		return std::string();
@@ -79,7 +82,7 @@ inline std::string test_to_cp1251(const std::string &utf8_string)
 
 		return std::string(&buf[0], wide_char_len);
 	}
-
+#endif
 	return std::string();
 }
 
@@ -101,7 +104,7 @@ inline void test_converting_bad_unicode_characters_to_cp1251(){
 
 	for(auto& i : cp1251_encoded) std::cout << int(i) << std::endl;
 
-	std::cout << to_utf8(cp1251_encoded) << std::endl;
+	std::cout << recode::to_utf8(cp1251_encoded) << std::endl;
 
 	std::cout << "Encoded string!" << std::endl;
 
