@@ -39,7 +39,15 @@ public:
 	void join();
 	void compute();
 
+	friend void thread_wrapper(
+			size_t thread_index,
+			const std::function<void(size_t)>& function_to_launch_at_each_iteration,
+			static_thread_pool& parent_thread_pool
+	);
+
 private:
+	void inform_thread_next_iteration() { inform_thread_ending_state(true); }
+	void inform_thread_ending() { inform_thread_ending_state(false); }
 	void inform_thread_ending_state(bool continue_or_not);
 	void wait_for_threads_ready();
 };
