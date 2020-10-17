@@ -148,7 +148,7 @@ set(PYTHONIC_SOURCES pythonic.h
 
         utils_constexpr/stringing.h
 
-        files/file_reader_linux.h files/file_reader.h tests/threading_tests/thread_distribution_test.h threading/thread_utils.cpp)
+        files/file_reader_linux.h files/file_reader.h tests/threading_tests/thread_distribution_test.h threading/thread_utils.cpp threading/static_thread_pool.cpp threading/static_thread_pool.h)
 
 foreach(this_source_file ${platform_specific_source_files})
     list(APPEND PYTHONIC_SOURCES ${this_source_file})
