@@ -46,21 +46,23 @@ void thread_wrapper(
 	lint this_iteration = 0;
 	while (true) {
 		/// Passively Wait to start (don`t consume CPU cycles for checking):
-		safe_print(thread_prefix + "Waiting for job...");
-		std::unique_lock<std::mutex> lck(running_cv_protector);
-		parent_thread_pool.running_cv.wait(lck, [](){ return threads_should_be_run; });
+		std::unique_lock<std::mutex> lck(parent_thread_pool.running_cv_protector);
+		parent_thread_pool.running_cv.wait(lck, [&parent_thread_pool](){ return parent_thread_pool.thread_ending_state_ready; });
 
-		parent_thread_pool.
+		bool threads_should_be_run_or_not = parent_thread_pool.threads_should_be_run;
 
 		lck.unlock();
+
+		if (!threads_should_be_run_or_not) break;
+
 
 		/// Do work:
 		function_to_launch_at_each_iteration(thread_index);
 
-		// Say that I`m ready:
-		threads_ready[my_index] = true;
-		while (max_all_threads_ready_run < lint(run_index)) {
-			/// Wait all threads
+		/// Say that I`m ready:
+		parent_thread_pool.threads_ready[thread_index] = true;
+		while (parent_thread_pool.max_all_threads_ready_run < this_iteration) {
+			/// Wait all the other threads
 		}
 
 
