@@ -87,7 +87,7 @@ public:
 	 */
 	template <typename TimerTask, typename ... Args>
 	std::future<void> schedule(Timestamp const& time, Period const& period, TimerTask task, Args... args) const {
-		return std::async(std::launch::async, [this, time, period, task, ...args = args]() {
+		return std::async(std::launch::async, [=, this/*, time, period, task, ...args = args*/]() {
 			auto start = std::chrono::time_point_cast<Timestamp::duration>(std::chrono::system_clock::now());
 			auto delay = std::chrono::duration_cast<Delay>(time - start);
 			std::this_thread::sleep_for(delay);
