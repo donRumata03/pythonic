@@ -6,34 +6,13 @@
 #include "static_thread_pool.h"
 
 
-/**
- * Public methods:
- */
+std::mutex print_mutex;
 
-void thread_wrapper(size_t thread_index, const std::function<void(size_t)>& function_to_launch_at_each_iteration);
-
-
-static_thread_pool::static_thread_pool (size_t thread_number, const std::function<void(size_t)>& function_to_launch_at_each_iteration)
-{
-	for (size_t thread_index = 0; thread_index < thread_number; ++thread_index) {
-		m_threads.emplace_back(thread_wrapper, thread_index, function_to_launch_at_each_iteration);
-	}
+void safe_print(const std::string& to_print) {
+	std::lock_guard<std::mutex> lck (print_mutex);
+	std::cout << to_print << std::endl;
 }
 
-
-void static_thread_pool::compute ()
-{
-	inform_thread_next_iteration();
-	wait_for_threads_ready();
-}
-
-void static_thread_pool::join ()
-{
-	inform_thread_ending();
-
-	for(auto& thread : m_threads)
-		thread.join();
-}
 
 ////////////////////////////////////////////////////// Thread wrapper ////////////////////////////////////////////////
 
@@ -55,6 +34,7 @@ void thread_wrapper(
 
 		if (!threads_should_be_run_or_not) break;
 
+		// safe_print("thread " + std::to_string(thread_index) + " gone through the condition variable, " + "threads_should_be_run_or_not is " + std::to_string(threads_should_be_run_or_not));
 
 		/// Do work:
 		function_to_launch_at_each_iteration(thread_index);
@@ -71,6 +51,43 @@ void thread_wrapper(
 }
 
 
+
+// void thread_wrapper(size_t thread_index, const std::function<void(size_t)>& function_to_launch_at_each_iteration);
+
+/**
+ * Public methods:
+ */
+
+static_thread_pool::static_thread_pool (size_t thread_number, const std::function<void(size_t)>& function_to_launch_at_each_iteration)
+												: m_thread_number(thread_number)
+{
+	threads_ready.assign(thread_number, false);
+
+	for (size_t thread_index = 0; thread_index < thread_number; ++thread_index) {
+		m_threads.emplace_back(thread_wrapper,
+								thread_index,
+								function_to_launch_at_each_iteration,
+								std::ref(*this)
+							);
+	}
+}
+
+
+void static_thread_pool::compute ()
+{
+	inform_thread_next_iteration();
+	wait_for_threads_ready();
+}
+
+void static_thread_pool::join ()
+{
+	inform_thread_ending();
+
+	for(auto& thread : m_threads)
+		thread.join();
+}
+
+
 ////////////////////////////////////////////////////// Thread pool helpers ////////////////////////////////////////////////
 
 void static_thread_pool::inform_thread_ending_state (bool continue_or_not)
@@ -84,17 +101,25 @@ void static_thread_pool::inform_thread_ending_state (bool continue_or_not)
 void static_thread_pool::wait_for_threads_ready ()
 {
 	/// ACTIVE Waiting for all threads to complete:
+	safe_print("[main thread]: start waiting");
 	while(std::any_of(threads_ready.begin(), threads_ready.end(), [](bool val){ return !val; })) {
 		// Wait
 	}
+
+	safe_print("[main thread]: ended waiting");
+
 
 	/// All threads ready => reset everything to the initial state:
 	std::fill(threads_ready.begin(), threads_ready.end(), false); // Clear thread ready
 	thread_ending_state_ready = false;
 	// threads_should_be_run = false;
 
+	safe_print("[main thread]: informed");
+
 	/// Release other threads
 	max_all_threads_ready_run++;
+
+	safe_print("[main thread]: released");
 }
 
 

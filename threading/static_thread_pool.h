@@ -10,6 +10,7 @@
 class static_thread_pool
 {
 	std::vector<std::thread> m_threads;
+	size_t m_thread_number = 0;
 	// std::atomic<bool> threads_are_working = false; <- todo!
 
 	std::mutex running_cv_protector;
