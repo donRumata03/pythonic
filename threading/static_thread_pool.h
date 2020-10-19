@@ -9,6 +9,8 @@
 
 class static_thread_pool
 {
+	bool is_initialized = false;
+
 	std::vector<std::thread> m_threads;
 	size_t m_thread_number = 0;
 	// std::atomic<bool> threads_are_working = false; <- todo!
@@ -27,7 +29,11 @@ class static_thread_pool
 
 
 public:
+	static_thread_pool() = default;
 	explicit static_thread_pool(size_t thread_number, const std::function<void(size_t)>& function_to_launch_at_each_iteration);
+
+	void init(size_t thread_number, const std::function<void(size_t)>& function_to_launch_at_each_iteration);
+
 
 	////////////////////////////////////////////////////////////////////////
 	static_thread_pool(const static_thread_pool& other) = delete;

@@ -58,18 +58,28 @@ void thread_wrapper(
  * Public methods:
  */
 
-static_thread_pool::static_thread_pool (size_t thread_number, const std::function<void(size_t)>& function_to_launch_at_each_iteration)
-												: m_thread_number(thread_number)
+void static_thread_pool::init (size_t thread_number,
+                               const std::function<void (size_t)> &function_to_launch_at_each_iteration)
 {
+	if (is_initialized) throw std::runtime_error("Pool is already initialized!");
+	is_initialized = true;
+
+	m_thread_number = thread_number;
 	threads_ready.assign(thread_number, false);
 
 	for (size_t thread_index = 0; thread_index < thread_number; ++thread_index) {
 		m_threads.emplace_back(thread_wrapper,
-								thread_index,
-								function_to_launch_at_each_iteration,
-								std::ref(*this)
-							);
+		                       thread_index,
+		                       function_to_launch_at_each_iteration,
+		                       std::ref(*this)
+		);
 	}
+}
+
+
+static_thread_pool::static_thread_pool (size_t thread_number, const std::function<void(size_t)>& function_to_launch_at_each_iteration)
+{
+	init(thread_number, function_to_launch_at_each_iteration);
 }
 
 
@@ -121,5 +131,6 @@ void static_thread_pool::wait_for_threads_ready ()
 
 	safe_print("[main thread]: released");
 }
+
 
 
