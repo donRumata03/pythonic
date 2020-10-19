@@ -32,5 +32,5 @@ inline void test_thread_pool() {
 
 	pool.compute();
 
-	pool.join();
+	// pool.join();
 }

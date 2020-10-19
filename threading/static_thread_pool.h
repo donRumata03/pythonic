@@ -52,6 +52,8 @@ public:
 			static_thread_pool& parent_thread_pool
 	);
 
+	~static_thread_pool() { join(); }
+
 private:
 	void inform_thread_next_iteration() { inform_thread_ending_state(true); }
 	void inform_thread_ending() { inform_thread_ending_state(false); }
