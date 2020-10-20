@@ -15,7 +15,11 @@ inline void test_thread_distribution ()
 						{ 100, 1 },
 						{ 1, 2 },
 						{ 6, 12 },
-
+						{ 12, 6 },
+						{ 11, 10 },
+						{ 15, 10 },
+						{ 13, 20 },
+						{ 101, 100 },
 
 	};
 
@@ -23,6 +27,6 @@ inline void test_thread_distribution ()
 
 	for (auto& example : examples) {
 		std::vector<std::pair<size_t, size_t>> ranges = distribute_task_ranges(example.first, example.second);
-		std::cout << example << "\t\t\t : \t\t\t" << ranges << std::endl;
+		std::cout << example << "\t : \t" << ranges << std::endl;
 	}
 }

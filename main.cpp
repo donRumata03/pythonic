@@ -18,6 +18,7 @@
 #include "geom_test.h"
 
 #include "tests/threading_tests/thread_distribution_test.h"
+#include "tests/threading_tests/thread_pool_test.h"
 
 #include <json_and_plot_test.h>
 
@@ -126,7 +127,7 @@ int main()
 	// easy_measure_test();
 
 	/// Threading:
-	// test_thread_distribution();
+	test_thread_distribution();
 
 	return 0;
 }

@@ -45,8 +45,9 @@ template<class T, class E> auto randint(T from, E to) -> decltype(from + to)
 {
 	using dec = decltype(from + to);
 	if (from == to) return from;
-	return dec(from) + dec((random() * (to - from))) % dec(to - from);
+	return dec(from) + dec((pythonic_random() * (to - from))) % dec(to - from);
 }
+
 template<class T, class E> auto randint(T from, E to, std::mt19937& gen) -> decltype(from + to)
 {
 	using dec = decltype(from + to);

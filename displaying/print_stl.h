@@ -24,6 +24,8 @@
 #include <vector>
 #include <type_traits>
 
+#include "encoding/encoder.h"
+
 // Declarations:
 
 template <class T> void print(const T &something, std::ostream &out = std::cout) noexcept;

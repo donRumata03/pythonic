@@ -3,10 +3,9 @@
 //
 
 #include "ByteSizeCommon.h"
-#include <algorithm>
+
 #define BYTES_IN_BIT 0.125
 
-#include <cmath>
 
 namespace hvn3 {
 
