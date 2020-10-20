@@ -10,7 +10,7 @@ namespace recode {
 	/// cp1251 <-> utf16
 	std::string to_cp1251(const std::wstring &utf16_string)
 	{
-        return {};
+        return {  };
 	}
 
 	std::wstring from_cp1251_to_utf16(const std::string &cp1251_string)

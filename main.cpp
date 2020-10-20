@@ -33,6 +33,10 @@ int main()
     set_utf8_in_console();
     std::cout << pythonic_base_dir << std::endl;
 
+    std::cout << sizeof(wchar_t) << std::endl;
+
+
+
 	/// Encoding
 
 	// test_utf16_files();
@@ -122,7 +126,7 @@ int main()
 	// easy_measure_test();
 
 	/// Threading:
-	test_thread_distribution();
+	// test_thread_distribution();
 
 	return 0;
 }
