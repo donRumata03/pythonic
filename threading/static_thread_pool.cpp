@@ -5,6 +5,7 @@
 
 #include "static_thread_pool.h"
 
+#include "displaying/print_stl.h"
 
 std::mutex print_mutex;
 
@@ -114,6 +115,11 @@ void static_thread_pool::wait_for_threads_ready ()
 	safe_print("[main thread]: start waiting");
 	while(std::any_of(threads_ready.begin(), threads_ready.end(), [](bool val){ return !val; })) {
 		// Wait
+
+		std::cout << threads_ready << std::endl;
+//		for (const auto& v : threads_ready)
+//			std::cout << v << " ";
+//		std::cout << std::endl;
 	}
 
 	safe_print("[main thread]: ended waiting");

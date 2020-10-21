@@ -18,7 +18,7 @@ template <class Func> std::string encoding_safe_apply(const std::string& string)
 	std::wstring good_encoded;
 
 	if (original_enc == encoding::any || original_enc == encoding::cp1251)
-		good_encoded = recode::from_cp1251_to_utf32(string);
+		good_encoded = recode::from_cp1251_to_utf16(string);
 
 	else good_encoded = recode::from_utf8_to_utf16(string);
 

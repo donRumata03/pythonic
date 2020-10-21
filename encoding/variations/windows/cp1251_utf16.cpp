@@ -97,7 +97,7 @@ namespace recode {
 		return cp1251_string;
 	}
 
-	std::wstring from_cp1251_to_utf32(const std::string &cp1251_string)
+	std::wstring from_cp1251_to_utf16(const std::string &cp1251_string)
 	{
 		auto str = cp1251_string.c_str();
 

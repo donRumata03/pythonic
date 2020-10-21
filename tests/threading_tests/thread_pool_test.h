@@ -25,12 +25,8 @@ inline void test_thread_pool() {
 
 	// std::this_thread::sleep_for(2s);
 
-
-	pool.compute();
-
-	// std::this_thread::sleep_for(3s);
-
-	pool.compute();
+	for (size_t i = 0; i < 10; i++)
+		pool.compute();
 
 	// pool.join();
 }

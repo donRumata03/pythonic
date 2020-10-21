@@ -194,18 +194,24 @@ template<class T, class E, class C> auto cut(T val, E _min, C _max)/* -> decltyp
 }
 
 /// Print percent:
-template<class T, class E> void print_percent(T part, E all_amount, std::ostream& out = std::cout) {
-	out << part << " / " << all_amount << " ( " << 100. * part / all_amount << "% )";
+template<class T, class E> void print_percent(T part, E all_amount, size_t precision = 0, std::ostream& out = std::cout) {
+	double value = 100. * part / all_amount;
+
+	double exp_value = pow(10., precision);
+	double rounded_value = std::round(value * exp_value) / exp_value;
+
+	out << part << " / " << all_amount << " ( " << rounded_value << "% )";
 }
 
 template <class T, class E> struct percent_plotter {
 	T part;
 	E all_amount;
-	percent_plotter(T arg1, E arg2) : part(arg1), all_amount(arg2) {}
+	size_t precision;
+	percent_plotter(T arg1, E arg2, size_t _precision = 0) : part(arg1), all_amount(arg2), precision(_precision) {}
 };
 
 template <class T, class E> std::ostream& operator<< (std::ostream& out, const percent_plotter<T, E>& plotter) {
-	print_percent(plotter.part, plotter.all_amount, out);
+	print_percent(plotter.part, plotter.all_amount, plotter.precision, out);
 	return out;
 }
 
@@ -228,7 +234,7 @@ std::pair<std::vector<double>, std::vector<double>> unzip(const std::vector<std:
 template<class Output_container_t, class Input_container_t>
 typename std::enable_if<std::is_same<typename Output_container_t::value_type, typename Input_container_t::value_type>::value, Output_container_t>::type
         copy_to (Input_container_t& input_container) {
-	using T = Input_container_t::value_type;
+	using T = typename Input_container_t::value_type;
 
 	// std::remove_const_t<Output_container_t> res(input_container.size());
 	Output_container_t res(input_container.begin(), input_container.end());

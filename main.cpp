@@ -61,7 +61,7 @@ int main()
 
 	// Linux:
 
-	test_reading_cp1251_file();
+	// test_reading_cp1251_file();
 
 	/// Filesystem
 
@@ -138,6 +138,7 @@ int main()
 
 	/// Threading:
 	// test_thread_distribution();
+	test_thread_pool();
 
 	return 0;
 }

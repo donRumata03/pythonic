@@ -53,7 +53,7 @@ template <class T, class E, class... Args> void print(T arg1, E arg2, Args... ar
 template<class T> void print(const std::vector<T>& vec, std::ostream& out) noexcept {
 	out << "[";
 	size_t i = 0;
-	for (auto& el : vec) {
+	for (const auto& el : vec) {
 		print(el, out);
 
 		if (i != vec.size() - 1) out << ", ";
