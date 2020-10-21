@@ -11,8 +11,6 @@
 
 #include <encoding/encoder.h>
 
-#include <filesystem>
-namespace fs = std::filesystem;
 
 
 std::vector<std::string> lsdir(const std::string& path); /// path is assumed to be encoded in utf-8; result is also utf-8

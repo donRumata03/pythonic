@@ -5,7 +5,7 @@
 #pragma once
 
 #include "pythonic_pch.h"
-#include "file_reader_base.h"
+#include "files/file_reader_base.h"
 #include "encoding/encoder.h"
 
 /// With recoding:

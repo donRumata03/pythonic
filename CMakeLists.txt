@@ -47,8 +47,8 @@ if (WIN32)
             encoding/variations/windows/cp1251_utf16.h
 
             encoding/variations/windows/utils.h
-            files/file_reader_windows.h
-            files/file_reader_windows.cpp
+            files/platform/windows/file_reader_windows.h
+            files/platform/windows/file_reader_windows.cpp
             )
 endif (WIN32)
 
@@ -60,14 +60,14 @@ if (UNIX)
 
             encoding/variations/linux/cp1251_utf8.cpp
             encoding/variations/linux/cp1251_utf8.h
-            encoding/variations/linux/utf8_utf16.cpp
-            encoding/variations/linux/utf8_utf16.h
-            encoding/variations/linux/cp1251_utf16.cpp
-            encoding/variations/linux/cp1251_utf16.h
+            encoding/variations/linux/utf8_utf32.cpp
+            encoding/variations/linux/utf8_utf32.h
+            encoding/variations/linux/cp1251_utf32.cpp
+            encoding/variations/linux/cp1251_utf32.h
 
             encoding/variations/linux/utils.h
 
-            files/file_reader_linux.cpp
+            files/platform/linux/file_reader_linux.cpp
             )
 
 endif (UNIX)
@@ -148,7 +148,7 @@ set(PYTHONIC_SOURCES pythonic.h
 
         utils_constexpr/stringing.h
 
-        files/file_reader_linux.h files/file_reader.h tests/threading_tests/thread_distribution_test.h threading/thread_utils.cpp threading/static_thread_pool.cpp threading/static_thread_pool.h tests/threading_tests/thread_pool_test.h)
+        files/platform/linux/file_reader_linux.h files/file_reader.h tests/threading_tests/thread_distribution_test.h threading/thread_utils.cpp threading/static_thread_pool.cpp threading/static_thread_pool.h tests/threading_tests/thread_pool_test.h files/file_walker_base.h files/platform/linux/file_walker_linux.cpp files/platform/linux/file_walker_linux.h files/platform/windows/file_walker_windows.cpp files/platform/windows/file_walker_windows.h)
 
 foreach(this_source_file ${platform_specific_source_files})
     list(APPEND PYTHONIC_SOURCES ${this_source_file})
@@ -213,7 +213,7 @@ add_executable(pythonic_test
         tests/timing_tests.h
 
 
-        tests/geom_test.h)
+        tests/geom_test.h tests/encoding_tests/linux_recode_test.h)
 
 
 

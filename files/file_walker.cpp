@@ -52,8 +52,6 @@ size_t fs_file_size(const std::wstring &path)
 
 size_t fs_folder_total_size(const std::wstring &path)
 {
-	// std::cout << "Counting folder size: " << recode::to_utf8(path) << std::endl;
-
 	fs::path p {path};
 	assert(fs::exists(p));
 	assert(fs::is_directory(p));
@@ -61,16 +59,9 @@ size_t fs_folder_total_size(const std::wstring &path)
 	auto it = fs::recursive_directory_iterator(p);
 	size_t size_counter = 0;
 
-
-	// std::cout << "Got it!" << std::endl;
-
 	for(const auto& entry : it) {
 		const fs::path& this_path = entry.path();
-		// std::wstring this_utf16_path = this_path.generic_wstring();
 		if (entry.is_regular_file()) size_counter += entry.file_size();
-
-		// std::cout << recode::to_utf8(this_utf16_path) << std::endl;
-		// std::cout << size_counter << std::endl;
 	}
 
 	return size_counter;

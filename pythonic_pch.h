@@ -102,6 +102,7 @@ using namespace std::string_literals;
 
 using namespace std::chrono_literals;
 namespace chrono = std::chrono;
+namespace fs = std::filesystem;
 
 
 // Include package for recoding:
@@ -113,12 +114,8 @@ namespace chrono = std::chrono;
     #include "iconv.h"
 #endif
 
-// Set base path:
-#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+/// Set base path:
 #include "utils_constexpr/stringing.h"
-
-// constexpr char* const _pythonic_pch_file_path = __FILE__;
-// constexpr char* const pythonic_base_dir = get_path_folder(_pythonic_pch_file_path);
 
 constexpr const char* pythonic_pch_file_path = __FILE__;
 inline std::filesystem::path pythonic_base_dir = get_path_folder(pythonic_pch_file_path);

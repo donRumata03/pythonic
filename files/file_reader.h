@@ -7,7 +7,7 @@
 #include "pythonic_pch.h"
 
 #ifdef PYTHONIC_IS_WINDOWS
-	#include "file_reader_windows.h"
+	#include "files/platform/windows/file_reader_windows.h"
 #else
-	#include "file_reader_linux.h"
+	#include "files/platform/linux/file_reader_linux.h"
 #endif

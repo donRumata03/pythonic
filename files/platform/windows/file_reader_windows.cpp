@@ -6,7 +6,7 @@
 
 #include "file_reader_windows.h"
 #include "encoding/encoder.h"
-#include "file_reader_base.h"
+#include "files/file_reader_base.h"
 
 // #include "encoding/win32_examples/utf8_utf16_conversion.h"
 

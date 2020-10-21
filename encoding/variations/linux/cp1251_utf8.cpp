@@ -18,8 +18,8 @@ namespace recode
 		return recode_base<
 		        std::string,
 		        std::string,
-		        size_t(1)>(cp1251_string, "CP2151", "UTF8");
-		// return to_utf8(from_cp1251_to_utf16(cp1251_string));
+		        size_t(2)>(cp1251_string, "CP2151", "UTF8");
+		// return to_utf8(from_cp1251_to_utf32(cp1251_string));
 	}
 
 	std::string to_cp1251(const std::string &utf8_string)

@@ -1,10 +1,15 @@
 #include <pythonic.h>
 #include <tests/encoding_tests/auto_decode_tests.h>
 
+/// Encoding:
 #include "encoding_tests/file_reading_tests.h"
 #include "encoding_tests/simple_encoding_tests.h"
 #include "encoding_tests/fs_test.h"
 #include "encoding_tests/cp1251_tests.h"
+
+#ifdef PYTHONIC_IS_LINUX
+#include "encoding_tests/linux_recode_test.h"
+#endif
 
 #include "fs_tests.h"
 #include "printing_tests.h"
@@ -23,6 +28,8 @@
 #include <json_and_plot_test.h>
 
 #include <execution>
+
+
 
 
 int main()
@@ -52,6 +59,9 @@ int main()
 	// auto_lower_upper_test();
 	// lang_recognition_test();
 
+	// Linux:
+
+	test_reading_cp1251_file();
 
 	/// Filesystem
 
@@ -127,7 +137,7 @@ int main()
 	// easy_measure_test();
 
 	/// Threading:
-	test_thread_distribution();
+	// test_thread_distribution();
 
 	return 0;
 }

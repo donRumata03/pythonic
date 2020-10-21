@@ -14,9 +14,9 @@
     #include "encoding/win32_examples/utf8_utf16_conversion.h"
     #include "variations/windows/utils.h"
 #elif defined(PYTHONIC_IS_LINUX)
-    #include "variations/linux/cp1251_utf16.h"
+    #include "variations/linux/cp1251_utf32.h"
     #include "variations/linux/cp1251_utf8.h"
-    #include "variations/linux/utf8_utf16.h"
+    #include "variations/linux/utf8_utf32.h"
     #include "variations/linux/utils.h"
 
 #else
