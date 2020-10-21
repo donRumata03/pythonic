@@ -41,9 +41,6 @@ int main()
     set_utf8_in_console();
     std::cout << pythonic_base_dir << std::endl;
 
-    std::cout << sizeof(wchar_t) << std::endl;
-
-
 
 	/// Encoding
 

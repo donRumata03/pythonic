@@ -19,10 +19,14 @@ class static_thread_pool
 	bool thread_ending_state_ready = false;
 	bool threads_should_be_run = false;
 	std::condition_variable running_cv;
-
+// /*
 	std::vector<bool> threads_ready;    // Updated by threads after ending,
 										// read by main thread to set true to all_threads_ready,
 										// is reset by main thread after ending
+
+// */
+
+	std::atomic<size_t> this_it_ready_thread_number = 0;
 	std::atomic<lint> max_all_threads_ready_run = -1;   // All the threads have finished work for all the indexes <= max_all_threads_ready_run
 														// Set by main thread,
 														// All the threads are waiting for all the others to be ready.

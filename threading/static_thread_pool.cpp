@@ -14,6 +14,8 @@ void safe_print(const std::string& to_print) {
 	std::cout << to_print << std::endl;
 }
 
+// std::atomic<size_t> threads_came_through_variable = 0;
+
 
 ////////////////////////////////////////////////////// Thread wrapper ////////////////////////////////////////////////
 
@@ -35,10 +37,14 @@ void thread_wrapper(
 
 		if (!threads_should_be_run_or_not) break;
 
+		// std::this_thread::sleep_for(0.1s);
+
 		// safe_print("thread " + std::to_string(thread_index) + " gone through the condition variable, " + "threads_should_be_run_or_not is " + std::to_string(threads_should_be_run_or_not));
 
 		/// Do work:
 		function_to_launch_at_each_iteration(thread_index);
+
+		parent_thread_pool.this_it_ready_thread_number++;
 
 		/// Say that I`m ready:
 		parent_thread_pool.threads_ready[thread_index] = true;
@@ -112,30 +118,32 @@ void static_thread_pool::inform_thread_ending_state (bool continue_or_not)
 void static_thread_pool::wait_for_threads_ready ()
 {
 	/// ACTIVE Waiting for all threads to complete:
-	safe_print("[main thread]: start waiting");
-	while(std::any_of(threads_ready.begin(), threads_ready.end(), [](bool val){ return !val; })) {
-		// Wait
+	// safe_print("[main thread]: start waiting");
 
-		std::cout << threads_ready << std::endl;
-//		for (const auto& v : threads_ready)
-//			std::cout << v << " ";
-//		std::cout << std::endl;
+	while(
+		//	std::any_of(threads_ready.begin(), threads_ready.end(), [](bool val){ return !val; })
+		this_it_ready_thread_number < m_thread_number
+		)
+	{
+		// Wait
 	}
 
-	safe_print("[main thread]: ended waiting");
+	// safe_print("[main thread]: ended waiting");
 
 
 	/// All threads ready => reset everything to the initial state:
 	std::fill(threads_ready.begin(), threads_ready.end(), false); // Clear thread ready
+	this_it_ready_thread_number = 0;
 	thread_ending_state_ready = false;
+
 	// threads_should_be_run = false;
 
-	safe_print("[main thread]: informed");
+	// safe_print("[main thread]: informed");
 
 	/// Release other threads
 	max_all_threads_ready_run++;
 
-	safe_print("[main thread]: released");
+	// safe_print("[main thread]: released");
 }
 
 
