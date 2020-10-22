@@ -70,3 +70,5 @@ namespace recode
 	std::string auto_recode(const std::string& string, encoding target_encoding);
 }
 
+std::u8string to_u8string(const std::string& utf8_encoded_string); // Copies
+std::u8string as_u8string(std::string& utf8_encoded_string);       // Reinterprets

@@ -5,6 +5,8 @@
 #include <cassert>
 #include "file_walker.h"
 #include "encoding/encoder.h"
+#include "file_walker_base.h"
+
 
 std::vector<std::string> lsdir(const std::string &path)
 {
@@ -43,6 +45,7 @@ std::vector<std::string> recursive_lsdir(const std::string &path)
 
 	return res;
 }
+
 
 size_t fs_file_size(const std::wstring &path)
 {
