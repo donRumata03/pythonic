@@ -65,7 +65,7 @@ std::vector<FileSystemStringType> base_recursive_lsdir(const FileSystemStringTyp
 
     auto it = fs::recursive_directory_iterator(system_path);
 
-    std::vector<std::string> res;
+    std::vector<FileSystemStringType> res;
     for(const auto& entry : it) {
         const fs::path& this_path = entry.path();
         FileSystemStringType native_string_path = this_path.native();
@@ -87,7 +87,7 @@ template<class FileSystemStringType>
 size_t base_fs_folder_total_size(const FileSystemStringType &path) {
     fs::path system_path {path};
     if(!fs::exists(system_path)) throw std::runtime_error("The path should exist");
-    if (fs::is_directory(system_path)) throw std::domain_error("The path should be a folder");
+    if (!fs::is_directory(system_path)) throw std::domain_error("The path should be a folder");
 
     auto it = fs::recursive_directory_iterator(system_path);
     size_t size_counter = 0;

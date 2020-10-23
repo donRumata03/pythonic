@@ -24,6 +24,7 @@
 #include "displaying/byte_sizes/ByteSizeCommon.h"
 #include "displaying/byte_sizes/BitSize.h"
 #include "displaying/byte_sizes/ByteSize.h"
+using namespace hvn3;
 
 #include "displaying/print_stl.h"
 #include "displaying/colored_printing.h"

@@ -8,6 +8,7 @@
 #include "encoding/encoder.h"
 #include "file_walker_base.h"
 
+/*
 
 std::vector<std::string> lsdir(const std::string &path)
 {
@@ -70,4 +71,5 @@ size_t fs_folder_total_size(const std::wstring &path)
 
 	return size_counter;
 }
+*/
 */

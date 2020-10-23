@@ -10,7 +10,7 @@
 #include "encoding_tests/linux_recode_test.h"
 #endif
 
-#ifdef PYTHONIC_WINDOWS
+#ifdef PYTHONIC_IS_WINDOWS
 #include "windows_fs_tests.h"
 #else
 #include "linux_fs_tests.h"
@@ -74,10 +74,10 @@ int main()
 	// test_fs_current_path();
 	// test_file_reading();
 
-    test_lsdir();
+    // test_lsdir();
     // test_recursive_lsdir();
     // test_fs_file_size();
-    // test_total_folder_size();
+    test_total_folder_size();
 
 
 	/// Printing
@@ -144,7 +144,7 @@ int main()
 
 	/// Threading:
 	// test_thread_distribution();
-	test_thread_pool();
+	// test_thread_pool();
 
 	return 0;
 }

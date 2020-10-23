@@ -49,6 +49,10 @@ if (WIN32)
             encoding/variations/windows/utils.h
             files/platform/windows/file_reader_windows.h
             files/platform/windows/file_reader_windows.cpp
+
+            files/platform/windows/file_walker_windows.cpp
+            files/platform/windows/file_walker_windows.h
+
             )
 endif (WIN32)
 
@@ -56,18 +60,27 @@ if (UNIX)
 
     set(platform_specific_source_files
 
+            # Encoding:
             encoding/variations/linux/linux_recoding_base.h
 
-            encoding/variations/linux/cp1251_utf8.cpp
             encoding/variations/linux/cp1251_utf8.h
-            encoding/variations/linux/utf8_utf32.cpp
+            encoding/variations/linux/cp1251_utf8.cpp
+
             encoding/variations/linux/utf8_utf32.h
-            encoding/variations/linux/cp1251_utf32.cpp
+            encoding/variations/linux/utf8_utf32.cpp
+
             encoding/variations/linux/cp1251_utf32.h
+            encoding/variations/linux/cp1251_utf32.cpp
 
             encoding/variations/linux/utils.h
 
+            # Files
+            files/platform/linux/file_reader_linux.h
             files/platform/linux/file_reader_linux.cpp
+
+            files/platform/linux/file_walker_linux.h
+            files/platform/linux/file_walker_linux.cpp
+
             )
 
 endif (UNIX)
@@ -91,10 +104,6 @@ set(PYTHONIC_SOURCES pythonic.h
         encoding/encode_exception.cpp
         encoding/encode_exception.h
 
-
-
-        files/file_walker.cpp
-        files/file_walker.h
 
         displaying/print_stl.h
 
@@ -129,7 +138,6 @@ set(PYTHONIC_SOURCES pythonic.h
         other/letter_utils.h
         maths/randomizator.cpp
         maths/randomizator.h
-        threading/thread_utils.h
 
         timing/Timer.cpp
         timing/Timer.h
@@ -144,11 +152,27 @@ set(PYTHONIC_SOURCES pythonic.h
         n_dim/nd_array.inl.h
         timing/easy_measurer.h
 
-        files/file_reader_base.h
 
         utils_constexpr/stringing.h
 
-        files/platform/linux/file_reader_linux.h files/file_reader.h tests/threading_tests/thread_distribution_test.h threading/thread_utils.cpp threading/static_thread_pool.cpp threading/static_thread_pool.h tests/threading_tests/thread_pool_test.h files/file_walker_base.h files/platform/linux/file_walker_linux.cpp files/platform/linux/file_walker_linux.h files/platform/windows/file_walker_windows.cpp files/platform/windows/file_walker_windows.h tests/linux_fs_tests.h)
+
+
+        files/file_reader_base.h
+        files/file_reader.h
+
+        files/file_walker_base.h
+        files/file_walker.h
+
+
+        tests/threading_tests/thread_distribution_test.h
+        tests/threading_tests/thread_pool_test.h
+
+        threading/thread_utils.h
+        threading/thread_utils.cpp
+        threading/static_thread_pool.cpp
+        threading/static_thread_pool.h
+
+        )
 
 foreach(this_source_file ${platform_specific_source_files})
     list(APPEND PYTHONIC_SOURCES ${this_source_file})
@@ -188,14 +212,31 @@ set_target_properties(pythonic PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "pythoni
 include_directories(pythonic_test tests)
 
 
-add_executable(pythonic_test
+
+# Platform dependent tests:
+
+set(platform_dependent_tests_linux
+
+        tests/encoding_tests/linux_recode_test.h
+        tests/linux_fs_tests.h
+
+        )
+
+set(platform_dependent_tests_windows
+
+        tests/windows_fs_tests.h
+
+        )
+
+#############
+
+set(pythonic_test_SOURCES
 
         main.cpp
 
 
         tests/encoding_tests/simple_encoding_tests.h
 
-        tests/windows_fs_tests.h
         tests/printing_tests.h
 
         tests/encoding_tests/file_reading_tests.h
@@ -212,9 +253,27 @@ add_executable(pythonic_test
         tests/timing_tests.h
 
 
-        tests/geom_test.h tests/encoding_tests/linux_recode_test.h)
+        tests/geom_test.h
+)
 
+#################
 
+if (UNIX)
+    set(platform_dependent_tests ${platform_dependent_tests_linux})
+endif()
+
+if (WIN32)
+    set(platform_dependent_tests ${platform_dependent_tests_windows})
+endif()
+
+foreach(this_source_file ${platform_dependent_tests})
+    list(APPEND pythonic_test_SOURCES ${this_source_file})
+endforeach()
+
+# Actual executable for pythonic:
+add_executable(pythonic_test
+        ${pythonic_test_SOURCES}
+        )
 
 target_link_libraries(pythonic_test pythonic)
 

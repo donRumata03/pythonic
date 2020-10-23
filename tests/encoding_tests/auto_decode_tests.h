@@ -8,7 +8,7 @@
 
 inline void test_enc_detecting(){
 	std::string base_path = R"(D:\Projects\Tests\enc_test\recognize_testing)";
-	auto files = lsdir(base_path);
+	auto files = lsdir<given_filename_encoding::cp1251>(base_path);
 
 	for(auto& file : files){
 		std::cout << file << " : " << recode::determine_encoding(*read_file(file)) << std::endl;
@@ -17,7 +17,7 @@ inline void test_enc_detecting(){
 
 inline void auto_recode_test(){
 	std::string base_path = R"(D:\Projects\Tests\enc_test\recognize_testing)";
-	auto files = lsdir(base_path);
+	auto files = lsdir<given_filename_encoding::cp1251>(base_path);
 
 	for(auto& file : files){
 		std::cout << file << " : " << recode::auto_recode(*read_file(file), encoding::utf8) << std::endl;
