@@ -148,7 +148,7 @@ set(PYTHONIC_SOURCES pythonic.h
 
         utils_constexpr/stringing.h
 
-        files/platform/linux/file_reader_linux.h files/file_reader.h tests/threading_tests/thread_distribution_test.h threading/thread_utils.cpp threading/static_thread_pool.cpp threading/static_thread_pool.h tests/threading_tests/thread_pool_test.h files/file_walker_base.h files/platform/linux/file_walker_linux.cpp files/platform/linux/file_walker_linux.h files/platform/windows/file_walker_windows.cpp files/platform/windows/file_walker_windows.h)
+        files/platform/linux/file_reader_linux.h files/file_reader.h tests/threading_tests/thread_distribution_test.h threading/thread_utils.cpp threading/static_thread_pool.cpp threading/static_thread_pool.h tests/threading_tests/thread_pool_test.h files/file_walker_base.h files/platform/linux/file_walker_linux.cpp files/platform/linux/file_walker_linux.h files/platform/windows/file_walker_windows.cpp files/platform/windows/file_walker_windows.h tests/linux_fs_tests.h)
 
 foreach(this_source_file ${platform_specific_source_files})
     list(APPEND PYTHONIC_SOURCES ${this_source_file})
@@ -195,8 +195,7 @@ add_executable(pythonic_test
 
         tests/encoding_tests/simple_encoding_tests.h
 
-        tests/encoding_tests/fs_test.h
-        tests/fs_tests.h
+        tests/windows_fs_tests.h
         tests/printing_tests.h
 
         tests/encoding_tests/file_reading_tests.h

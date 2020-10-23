@@ -1,3 +1,4 @@
+/*
 //
 // Created by Vova on 24.05.2020.
 //
@@ -69,3 +70,4 @@ size_t fs_folder_total_size(const std::wstring &path)
 
 	return size_counter;
 }
+*/

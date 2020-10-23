@@ -4,14 +4,18 @@
 /// Encoding:
 #include "encoding_tests/file_reading_tests.h"
 #include "encoding_tests/simple_encoding_tests.h"
-#include "encoding_tests/fs_test.h"
 #include "encoding_tests/cp1251_tests.h"
 
 #ifdef PYTHONIC_IS_LINUX
 #include "encoding_tests/linux_recode_test.h"
 #endif
 
-#include "fs_tests.h"
+#ifdef PYTHONIC_WINDOWS
+#include "windows_fs_tests.h"
+#else
+#include "linux_fs_tests.h"
+#endif
+
 #include "printing_tests.h"
 #include "python_test.h"
 #include "nd_test.h"
@@ -70,7 +74,10 @@ int main()
 	// test_fs_current_path();
 	// test_file_reading();
 
-
+    test_lsdir();
+    // test_recursive_lsdir();
+    // test_fs_file_size();
+    // test_total_folder_size();
 
 
 	/// Printing
