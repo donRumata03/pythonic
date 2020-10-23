@@ -76,6 +76,28 @@ namespace recode
 		return "";
 	}
 
+	std::wstring utf8_to_wstring (const std::string &original_string)
+	{
+#ifdef PYTHONIC_IS_WINDOWS
+		return from_utf8_to_utf16(original_string);
+#endif
+
+#ifdef PYTHONIC_IS_LINUX
+		return from_utf8_to_utf32(original_string);
+#endif
+	}
+
+	std::wstring cp1251_to_wstring (const std::string &original_string)
+	{
+#ifdef PYTHONIC_IS_WINDOWS
+		return from_cp1251_to_utf16(original_string);
+#endif
+
+#ifdef PYTHONIC_IS_LINUX
+		return from_cp1251_to_utf32(original_string);
+#endif
+	}
+
 
 /*
 	std::string to_utf8(const std::string &cp1251_string)

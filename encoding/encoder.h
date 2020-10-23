@@ -59,6 +59,9 @@ inline std::ostream& operator<< (std::ostream& out, /*const */ encoding/*&*/ enc
 
 namespace recode
 {
+	std::wstring utf8_to_wstring(const std::string& original_string);
+	std::wstring cp1251_to_wstring(const std::string& original_string);
+
 	/// Encoding determination:
 	bool is_only_ASCII(const std::string &string);
 	// bool is_valid_utf8(const char *string);
