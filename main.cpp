@@ -63,6 +63,9 @@ int main()
 	// Linux:
 
 	// test_reading_cp1251_file();
+    // cp1251_forward_and_back_converting_tests();
+    utf32_forward_and_back_converting_tests();
+
 
 	/// Filesystem
 
@@ -75,7 +78,7 @@ int main()
 	// test_file_reading();
 
     // test_lsdir();
-    test_recursive_lsdir();
+    // test_recursive_lsdir();
     // test_fs_file_size();
     // test_total_folder_size();
 
