@@ -29,9 +29,9 @@ OutputStringType recode_base(const InputStringType& input_string, const char* fr
 
     size_t input_size_bytes = input_string.size() * input_char_size;
 
-    std::string res;
+    OutputStringType res;
     res.resize(input_string.size() * in_to_out_char_amount_increasing);
-    char* pointer_to_write_output = res.data();
+    char* pointer_to_write_output = reinterpret_cast<OutputCharType*>(res.data());
     size_t out_max_size_bytes = res.size() * output_char_size;
 
     std::cout << "InputSizeBytes: " << input_char_size << std::endl;
@@ -46,5 +46,5 @@ OutputStringType recode_base(const InputStringType& input_string, const char* fr
     res.erase(res.begin() + res.find_first_of('\0'), res.end());
     res.shrink_to_fit();
 
-    return reinterpret_cast<OutputStringType&&>(std::move(res));
+    return res;
 }

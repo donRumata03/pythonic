@@ -11,11 +11,11 @@ namespace recode {
 	/// cp1251 <-> utf16
 	std::string to_cp1251(const std::wstring &utf32_string)
 	{
-        return recode_base<std::wstring, std::string, size_t(1)>(utf32_string, "UTF32", "UTF32");
+        return recode_base<std::wstring, std::string, size_t(1)>(utf32_string, "UTF-32", "CP1251");
 	}
 
 	std::wstring from_cp1251_to_utf32(const std::string &cp1251_string)
 	{
-		return {};
+		return recode_base<std::string, std::wstring, size_t(1)>(cp1251_string, "CP1251", "UTF-32");
 	}
 }

@@ -14,7 +14,7 @@ namespace recode {
                 std::wstring,
                 std::string,
                 size_t(4)
-                            >(utf32_string, "UTF32", "UTF8");
+                            >(utf32_string, "UTF-32", "UTF-8");
 	}
 
 	std::wstring from_utf8_to_utf32(const std::string &utf8_string)
@@ -23,6 +23,6 @@ namespace recode {
                 std::string,
                 std::wstring,
                 1
-        >(utf8_string, "UTF8", "UTF32");
+        >(utf8_string, "UTF-8", "UTF-32");
 	}
 }
