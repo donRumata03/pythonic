@@ -91,8 +91,8 @@ inline void test_converting_bad_unicode_characters_to_cp1251(){
 
 	std::cout << s << std::endl;
 
-	std::wstring encoded_filename = recode::from_utf8_to_utf16(R"(D:\Projects\Tests\enc_test\русская_папка\bad_characters_cp1251.txt)");
-	std::cout << "Encoded filename!" << std::endl;
+	std::string encoded_filename = R"(D:\Projects\Tests\enc_test\русская_папка\bad_characters_cp1251.txt)";
+
 
 	std::string cp1251_encoded;
 	try {
@@ -110,7 +110,7 @@ inline void test_converting_bad_unicode_characters_to_cp1251(){
 
 
 
-	write_file(cp1251_encoded, encoded_filename);
+	write_file<given_filename_encoding::utf8>(cp1251_encoded, encoded_filename);
 }
 
 inline void lang_recognition_test(){

@@ -7,7 +7,7 @@
 #include "maths/randomizator.h"
 
 #include "files/file_walker.h"
-#include "files/platform/windows/file_reader_windows.h"
+#include "files/file_reader.h"
 #include "maths/numpyic.h"
 #include "displaying/type_printer.h"
 

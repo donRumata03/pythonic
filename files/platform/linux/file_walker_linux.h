@@ -8,13 +8,13 @@
 #include "files/file_walker_base.h"
 
 namespace file_walker_detail {
-    template<class Functor, given_filename_encoding given_encoding>
-    auto invoke_with_utf8(const std::string& path) {
+    template<given_filename_encoding given_encoding, class Functor>
+    auto invoke_with_utf8(const std::string& path, const Functor& the_functor) {
         if constexpr (given_encoding == given_filename_encoding::utf8) {
-            return Functor(path);
+            return the_functor(path);
         }
         else {
-            return Functor(recode::to_utf8(path));
+            return the_functor(recode::to_utf8(path));
         }
     }
 }
@@ -22,24 +22,24 @@ namespace file_walker_detail {
 
 template<given_filename_encoding given_encoding>
 std::vector<std::string> lsdir(const std::string& path) {
-    return file_walker_detail::invoke_with_utf8<base_lsdir<std::string>, given_encoding>(path);
+    return file_walker_detail::invoke_with_utf8<given_encoding>(path, base_lsdir<std::string>);
 }
 
 template<given_filename_encoding given_encoding>
 std::vector<std::string> recursive_lsdir(const std::string& path) {
-    return file_walker_detail::invoke_with_utf8<base_recursive_lsdir<std::string>, given_encoding>(path);
+    return file_walker_detail::invoke_with_utf8<given_encoding>(path, base_recursive_lsdir<std::string>);
 }
 
 
 
 template<given_filename_encoding given_encoding>
 size_t fs_file_size(const std::string& path) {
-    return file_walker_detail::invoke_with_utf8<base_fs_file_size<std::string>, given_encoding>(path);
+    return file_walker_detail::invoke_with_utf8<given_encoding>(path, base_fs_file_size<std::string>);
 }
 
 template<given_filename_encoding given_encoding>
 size_t fs_folder_total_size(const std::string& path) {
-    return file_walker_detail::invoke_with_utf8<base_fs_folder_total_size<std::string>, given_encoding>(path);
+    return file_walker_detail::invoke_with_utf8<given_encoding>(path, base_fs_folder_total_size<std::string>);
 }
 
 

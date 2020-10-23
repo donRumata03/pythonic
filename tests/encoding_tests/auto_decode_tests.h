@@ -25,8 +25,8 @@ inline void auto_recode_test(){
 }
 
 inline void auto_lower_upper_test(){
-	std::wstring w = recode::from_utf8_to_utf16("ПрИвет!");
-	std::cout << recode::to_utf8(to_lower(w)) << std::endl;
+	std::string w = "ПрИвет!";
+	std::cout << to_lower(w) << std::endl;
 
 	std::cout << recode::to_utf8(to_lower(recode::to_cp1251("Привет, Hello!"))) << std::endl;
 	std::cout << recode::to_utf8(to_upper(recode::to_cp1251("привет, Hello!"))) << std::endl;

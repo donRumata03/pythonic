@@ -75,9 +75,9 @@ int main()
 	// test_file_reading();
 
     // test_lsdir();
-    // test_recursive_lsdir();
+    test_recursive_lsdir();
     // test_fs_file_size();
-    test_total_folder_size();
+    // test_total_folder_size();
 
 
 	/// Printing

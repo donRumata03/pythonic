@@ -15,14 +15,14 @@
 template <class Func> std::string encoding_safe_apply(const std::string& string){
 	encoding original_enc = recode::determine_encoding(string);
 
-	std::wstring good_encoded;
+	std::wstring wide_string;
 
 	if (original_enc == encoding::any || original_enc == encoding::cp1251)
-		good_encoded = recode::from_cp1251_to_utf16(string);
+        wide_string = recode::cp1251_to_wstring(string);
 
-	else good_encoded = recode::from_utf8_to_utf16(string);
+	else wide_string = recode::utf8_to_wstring(string);
 
-	std::wstring res = Func::do_work(good_encoded);
+	std::wstring res = Func::do_work(wide_string);
 
 	if (original_enc == encoding::any || original_enc == encoding::cp1251) return recode::to_cp1251(res);
 	else return recode::to_utf8(res);

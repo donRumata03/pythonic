@@ -22,9 +22,13 @@ inline void test_recursive_lsdir() {
 }
 
 inline void test_fs_file_size() {
-    std::cout << fs_file_size<given_filename_encoding::utf8>(
-            (pythonic_base_dir / "tests" / "encoding_tests" / "test_files" / "Привет-cp1251.txt").string()
+    auto filename = (pythonic_base_dir / "tests" / "encoding_tests" / "test_files" / "Привет-cp1251.txt").string();
+
+    std::cout << "File size: " << fs_file_size<given_filename_encoding::utf8>(
+        filename
     ) << std::endl;
+
+    std::cout << "File contents: " << recode::to_utf8(*read_file<given_filename_encoding::utf8>(filename)) << std::endl;
 }
 
 inline void test_total_folder_size() {
