@@ -9,7 +9,7 @@
 inline void test_thread_pool() {
 	std::mutex wm;
 	static_thread_pool pool(12, [&wm](size_t thread_index){
-		/*
+
 		{
 			std::lock_guard lck(wm);
 			std::cout << "Thread " << thread_index << "working..." << std::endl;
@@ -20,7 +20,7 @@ inline void test_thread_pool() {
 			std::lock_guard lck(wm);
 			std::cout << "Thread " << thread_index << "finished this iteration." << std::endl;
 		}
-		*/
+
 	});
 
 	// std::this_thread::sleep_for(2s);

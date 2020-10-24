@@ -1,6 +1,6 @@
 # Defines the following variables:
 #
-# pythonic_static_library <- contains the path to pythonic static library.
+# pythonic_static_libraries <- contains the path to pythonic static library and some supporting libs.
 # pythonic_include_directories <- contains a list of directories which you should include in order to use pythonic.
 
 set(actual_pythonic_dir "")
@@ -76,12 +76,21 @@ if(WIN32)
 endif()
 
 if (EXISTS "${pythonic_build_dir}/${pythonic_static_library_name}")
-    set(pythonic_static_library ${pythonic_build_dir}/${pythonic_static_library_name})
-    message("Found pythonic static library here: ${pythonic_static_library}")
+    set(pythonic_static_libraries ${pythonic_build_dir}/${pythonic_static_library_name})
+    message("Found pythonic static library here: ${pythonic_static_libraries}")
 else()
     message(FATAL_ERROR "Can`t find pythonic static library file in corresponding directory!!! (${pythonic_build_dir}/${pythonic_static_library_name})")
 endif()
 
+# STD libs:
+if(UNIX)
+    list(APPEND pythonic_static_libraries
+            tbb
+            pthread
+            )
+endif()
+
+# Include
 set(pythonic_include_directories ${actual_pythonic_dir})
 
 # Find Json:
