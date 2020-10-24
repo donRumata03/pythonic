@@ -58,6 +58,7 @@ endif()
 set(Pythonic_release_build_dir ${actual_pythonic_dir}/cmake-build-release)
 set(Pythonic_debug_build_dir ${actual_pythonic_dir}/cmake-build-debug)
 
+# Distinguish between build types:
 if (${CMAKE_BUILD_TYPE} STREQUAL Release)
     set(pythonic_build_dir ${Pythonic_release_build_dir})
 elseif(${CMAKE_BUILD_TYPE} STREQUAL Debug) # It`s Debug!
@@ -66,21 +67,19 @@ else()
     message(FATAL_ERROR "Bad CMAKE_BUILD_TYPE (${CMAKE_BUILD_TYPE}). It should be either Release or Debug")
 endif()
 
+# Choose static library name based on operation system:
 if(UNIX)
     set(pythonic_static_library_name libpythonic.a)
 endif()
-
 if(WIN32)
-    set()
+    set(pythonic_static_library_name pythonic.lib)
 endif()
 
 if (EXISTS "${pythonic_build_dir}/${pythonic_static_library_name}")
-
-
-    set(pythonic_static_library ${pythonic_build_dir}/pythonic.lib)
+    set(pythonic_static_library ${pythonic_build_dir}/${pythonic_static_library_name})
     message("Found pythonic static library here: ${pythonic_static_library}")
 else()
-    message(FATAL_ERROR "Can`t find pythonic static library file in corresponding directory!!! (${pythonic_build_dir}/pythonic.lib)")
+    message(FATAL_ERROR "Can`t find pythonic static library file in corresponding directory!!! (${pythonic_build_dir}/${pythonic_static_library_name})")
 endif()
 
 set(pythonic_include_directories ${actual_pythonic_dir})
