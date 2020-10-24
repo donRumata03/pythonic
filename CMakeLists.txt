@@ -191,7 +191,7 @@ add_library(pythonic ${PYTHONIC_SOURCES})
 if(WIN32)
     # Pass
 else()
-    target_link_libraries(pythonic tbb)
+    target_link_libraries(pythonic tbb pthread)
 endif()
 
 
