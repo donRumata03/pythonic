@@ -66,8 +66,17 @@ else()
     message(FATAL_ERROR "Bad CMAKE_BUILD_TYPE (${CMAKE_BUILD_TYPE}). It should be either Release or Debug")
 endif()
 
+if(UNIX)
+    set(pythonic_static_library_name libpythonic.a)
+endif()
 
-if (EXISTS ${pythonic_build_dir}/pythonic.lib)
+if(WIN32)
+    set()
+endif()
+
+if (EXISTS "${pythonic_build_dir}/${pythonic_static_library_name}")
+
+
     set(pythonic_static_library ${pythonic_build_dir}/pythonic.lib)
     message("Found pythonic static library here: ${pythonic_static_library}")
 else()

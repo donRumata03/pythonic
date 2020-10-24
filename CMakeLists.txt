@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.16)
 
+# Useful macros:
+
+# ^^^ End useful macros
+
 if (WIN32)
     message("Platform: Windows")
 
     # message(${CMAKE_CXX_COMPILER_ID})
-    #if(MSVC)
+    # if(MSVC)
     #    message("Compiler: MSVC")
     # else()
     #    message("WTF compiler isn't MSVC on Windows??")

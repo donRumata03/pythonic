@@ -40,7 +40,7 @@ foreach(j_dir ${Json_possible_dirs})
     endif()
 endforeach()
 
-message(${CMAKE_CURRENT_LIST_DIR})
+message("CMAKE_CURRENT_LIST_DIR in FindJson.cmake is: ${CMAKE_CURRENT_LIST_DIR}")
 
 if (UNIX)
     # message("UNIX!")
@@ -58,6 +58,17 @@ if (UNIX)
     endforeach()
 endif()
 
+set(internal_json_dir "${CMAKE_CURRENT_LIST_DIR}/../lib/json")
+set(internal_path "${internal_json_dir}/json.hpp")
+message("internal path: ${internal_path}")
+if (EXISTS ${internal_path})
+    set(found_in_default_dirs ON)
+    set(json_location ${internal_path})
+    set(json_directory ${internal_json_dir})
+    message("Json found in internal location!")
+endif()
+
+
 if (NOT found_in_default_dirs)
     message(FATAL_ERROR "Json_DIR isn`t specified, can`t also find in default locations (${Json_possible_locations})")
 endif()
@@ -65,4 +76,4 @@ endif()
 
 set(Json_include_directories ${json_directory})
 
-message(STATUS "Package Json successfully found in default directory: ${Json_include_directories}")
+message(STATUS "Package Json successfully found in one of default  locations. Its directory is ${Json_include_directories}")
