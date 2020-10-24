@@ -1,9 +1,13 @@
-if (DEFINED Json_DIR)
+
+#[[
+
+if (STREQUAL ${Json_DIR} "Json_DIR-NOTFOUND")
     set(Json_include_directories ${Json_DIR})
     message(STATUS "Package Json successfully found in specified directory: ${Json_include_directories}")
     return()
 endif()
 
+]]
 
 set (Json_possible_dirs
         "D:/Cpp_Libs/json"
@@ -45,7 +49,7 @@ message("CMAKE_CURRENT_LIST_DIR in FindJson.cmake is: ${CMAKE_CURRENT_LIST_DIR}"
 if (UNIX)
     # message("UNIX!")
     foreach(rel_j_dir ${Json_possible_rel_dirs})
-        get_filename_component(j_dir ${rel_j_dir} REALPATH BASE_DIR $ENV{HOME})
+        file(TO_CMAKE_PATH $ENV{HOME}/${rel_j_dir} j_dir)
 
         set(location "${j_dir}/json.hpp")
         list(APPEND Json_possible_locations ${location})
@@ -76,4 +80,4 @@ endif()
 
 set(Json_include_directories ${json_directory})
 
-message(STATUS "Package Json successfully found in one of default  locations. Its directory is ${Json_include_directories}")
+message(STATUS "Package Json successfully found in one of default locations. Its directory is ${Json_include_directories}")

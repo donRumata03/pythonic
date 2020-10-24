@@ -28,15 +28,7 @@ set(possible_pythonic_dir_names
         )
 
 foreach(current_pythonic_dir_name ${possible_pythonic_dir_names})
-    # message(${current_pythonic_dir_name})
-    # if (NOT DEFINED ${current_pythonic_dir_name})
-
-    # else()
-        # message("${current_pythonic_dir_name} is defined")
-        # message(${${current_pythonic_dir_name}})
     if (EXISTS ${${current_pythonic_dir_name}})
-        # message("Provided dir exists!")
-
         set(pythonic_dir_provided ON)
         set(actual_pythonic_dir ${${current_pythonic_dir_name}})
 
@@ -54,9 +46,15 @@ else()
 endif()
 
 
+# get_filename_component(j_dir ${rel_j_dir} REALPATH BASE_DIR $ENV{HOME})
 
-set(Pythonic_release_build_dir ${actual_pythonic_dir}/cmake-build-release)
-set(Pythonic_debug_build_dir ${actual_pythonic_dir}/cmake-build-debug)
+file(TO_CMAKE_PATH "${actual_pythonic_dir}/cmake-build-release" Pythonic_release_build_dir)
+file(TO_CMAKE_PATH "${actual_pythonic_dir}/cmake-build-debug" Pythonic_debug_build_dir)
+
+# get_filename_component(Pythonic_release_build_dir cmake-build-release REALPATH BASEDIR ${actual_pythonic_dir})
+# get_filename_component(Pythonic_debug_build_dir cmake-build-debug REALPATH BASEDIR ${actual_pythonic_dir})
+
+# message(${Pythonic_debug_build_dir})
 
 # Distinguish between build types:
 if (${CMAKE_BUILD_TYPE} STREQUAL Release)
