@@ -63,7 +63,7 @@ point operator+ (const point &point, double value)
 
 point operator+ (double value, const point &point)
 {
-	return { point.x + value, point.y + value };
+	return point + value;
 }
 
 
@@ -74,7 +74,7 @@ point operator- (const point &point, double value)
 
 point operator- (double value, const point &point)
 {
-	return { point.x - value, point.y - value };
+	return { value - point.x, value - point.y };
 }
 
 point operator* (const point &point, double value)
@@ -84,7 +84,7 @@ point operator* (const point &point, double value)
 
 point operator* (double value, const point &point)
 {
-	return { point.x * value, point.y * value };
+	return point * value;
 }
 
 point operator/ (const point &point, double value)
