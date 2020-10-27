@@ -85,7 +85,9 @@ public:
 
 
 void add_pairs_to_plot(const pms& points, const plot_params& params = {});
-inline void add_vectors_to_plot(const std::vector<double>& xs, const std::vector<double>& ys, const plot_params& params = {}) { add_pairs_to_plot(zip(xs, ys)); }
+inline void add_vectors_to_plot(const std::vector<double>& xs, const std::vector<double>& ys, const plot_params& params = {}) { 
+	add_pairs_to_plot(zip(xs, ys), params); 
+}
 void add_points_to_plot(const std::vector<point>& points, const plot_params& params = {});
 void add_graphs_to_plot(const std::vector<pms>& graphs, const plot_params& params = {});
 
