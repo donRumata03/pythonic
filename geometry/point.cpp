@@ -121,6 +121,20 @@ double squared_abs (const point &point)
 	return square(point.x) + square(point.y);
 }
 
+////////////////////////////////////////////////////////////////////////
+
+void to_json (json& j, const point& point)
+{
+	j["x"] = point.x;
+	j["y"] = point.y;
+}
+
+void from_json (const json& j, point& point)
+{
+	point.x = j["x"];
+	point.y = j["y"];
+}
+
 
 
 

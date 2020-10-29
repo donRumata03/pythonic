@@ -44,6 +44,14 @@ struct point
 	point& scale_y_from(double from, double scale_factor);
 };
 
+/// Json
+
+void to_json(json& j, const point& point);
+void from_json(const json& j, point& point);
+
+
+/// Operators:
+
 point operator- (const point& point);
 
 point operator+ (const point& first, const point& second);
