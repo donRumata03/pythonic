@@ -83,18 +83,6 @@ uint64_t base_file_size_in_bytes(const FileSystemStringType &filename)
 
 ////////////////////////////////////////////////////////////////////////
 
-// Instantiate for fs::path:
-inline auto read_file(const std::filesystem::path& filename) {
-	return base_read_file(filename);
-}
-
-inline auto write_file(const std::string& data, const std::filesystem::path& filename) {
-	base_write_file(data, filename);
-}
-
-inline auto file_size_in_bytes(const std::filesystem::path& filename) {
-	return base_file_size_in_bytes(filename);
-}
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -103,7 +91,14 @@ enum class given_filename_encoding {
 	utf8
 };
 
-/// Define interface:
+
+/**
+ * Define interface:
+ */
+
+
+/// From std::string:
+
 template<given_filename_encoding filename_encoding>
 std::optional<std::string> read_file(const std::string &filename);
 
@@ -112,4 +107,10 @@ void write_file(const std::string &data, const std::string &filename);
 
 template<given_filename_encoding filename_encoding>
 uint64_t file_size_in_bytes(const std::string &filename);
+
+/// From std::filename::path:
+
+std::optional<std::string> read_file(const std::filesystem::path& filename);
+void write_file(const std::string& data, const std::filesystem::path& filename);
+void file_size_in_bytes(const std::filesystem::path& filename);
 
