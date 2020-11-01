@@ -25,7 +25,7 @@ static std::wstring recode_filename_to_utf16(const std::string& filename) {
 		return recode::from_utf8_to_utf16(filename);
 	}
 	else {
-		return recode::from_cp1251_to_utf32(filename);
+		return recode::from_cp1251_to_utf16(filename);
 	}
 }
 
