@@ -44,15 +44,15 @@ std::optional<std::string> read_file(const std::string &utf8_filename)
 
 
 std::optional<std::string> read_file(const std::filesystem::path& filename) {
-	return read_file(filename.wstring());
+	return read_file(recode::from_utf8_to_utf16(filename.string()));
 }
 
 void write_file(const std::string& data, const std::filesystem::path& filename) {
-	write_file(data, filename.wstring());
+	write_file(data, recode::from_utf8_to_utf16(filename.string()));
 }
 
 void file_size_in_bytes(const std::filesystem::path& filename) {
-	file_size_in_bytes(filename.wstring());
+	file_size_in_bytes(recode::from_utf8_to_utf16(filename.string()));
 }
 
 

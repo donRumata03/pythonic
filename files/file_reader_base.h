@@ -114,7 +114,7 @@ std::optional<std::string> read_file(const std::filesystem::path& filename);
 void write_file(const std::string& data, const std::filesystem::path& filename);
 void file_size_in_bytes(const std::filesystem::path& filename);
 
-template<class T>
+
 std::optional<std::string> read_file(const std::string& filename) = delete;
 void write_file(const std::string& data, const std::string& filename) = delete;
 void file_size_in_bytes(const std::string& filename) = delete;
