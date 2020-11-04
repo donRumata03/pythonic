@@ -1,9 +1,18 @@
+import os
+from inspect import getsourcefile
+from os.path import abspath
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from matplotlib import colors as mclr
 import json
 
-IN_FILE_PATH = r"D:\pythonic\plotting\plot_data.json"
+root_dir_path = Path(abspath(getsourcefile(lambda: 0))).parent.absolute()
+
+IN_FILE_PATH = os.path.join(root_dir_path, "plot_data.json")  # f"{root_dir_path}/plot_data.json"
+TEMP_FILE_PATH = os.path.join(root_dir_path, "temp.json")
+print("Plotting: input file path:", IN_FILE_PATH)
 
 
 def my_key(a):
@@ -11,9 +20,8 @@ def my_key(a):
 
 
 file_data = open(IN_FILE_PATH, "rb").read().decode("utf-8")
-# file_data = open(IN_FILE_PATH, "r").read()
 
-open(r"D:\pythonic\plotting\temp.json", "wb").write(file_data.encode("utf-8"))
+open(TEMP_FILE_PATH, "wb").write(file_data.encode("utf-8"))
 
 raw_data = json.loads(file_data)
 data = raw_data["plots"]

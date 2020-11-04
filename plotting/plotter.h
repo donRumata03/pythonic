@@ -14,11 +14,6 @@
 
 
 
-constexpr const char* go_to_python_dir_command = "cd \"C:/Program Files (x86)/Python37-32/\"";
-constexpr const char* python_plot_command = "python.exe D:/pythonic/plotting/plotter.py";
-
-
-
 struct plot_params
 {
 	std::string name = "";

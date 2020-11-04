@@ -101,7 +101,7 @@ int main()
 
 	// simple_test_json();
 	// basic_plot_test();
-	// line_plot_test();
+	line_plot_test();
 	// throwing_function_plotting_test();
 	// throwing_everywhere_function_test();
 
@@ -147,7 +147,7 @@ int main()
 
 	/// Threading:
 	// test_thread_distribution();
-	test_thread_pool();
+	// test_thread_pool();
 
 	return 0;
 }
