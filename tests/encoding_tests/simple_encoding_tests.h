@@ -31,7 +31,7 @@ inline void test_file_reading() {
 		std::cout << int(c) << std::endl;
 	}
 
-	auto r = read_file(cp1251_filename);
+	auto r = read_file<given_filename_encoding::cp1251>(cp1251_filename);
 
 	if (!r) {
 		std::cout << "Failed to read file! Check the filename encoding and if the assumed filename exists.\n";
@@ -48,7 +48,7 @@ inline void test_file_reading() {
 
 	// Opening file with read filename:
 
-	auto rr = read_file(s);
+	auto rr = read_file<given_filename_encoding::cp1251>(s);
 
 	if (!rr) {
 		std::cout << "Failed to read file! Check the filename encoding and if the assumed filename exists.\n";

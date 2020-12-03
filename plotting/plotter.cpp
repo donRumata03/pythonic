@@ -13,7 +13,14 @@
 
 // constexpr const char* data_filename = R"(D:\pythonic\plotting\plot_data.json)";
 
-const fs::path plot_data_path = fs::path{pythonic_base_dir} / "plotting" / "plot_data.json";
+const fs::path plot_data_path = pythonic_base_dir / "plotting" / "plot_data.json";
+std::string LINUX_plotting_command = "/usr/bin/python3"s + " " + (pythonic_base_dir / "plotting" / "plotter.py").string();
+
+
+constexpr const char* WINDOWS_go_to_python_dir_command = "cd \"C:/Program Files (x86)/Python37-32/\"";
+std::string WINDOWS_python_plot_command = "python.exe"s + " " + (pythonic_base_dir / "plotting" / "plotter.py").string();
+
+
 
 void add_pairs_to_plot(const pms &points, const plot_params &params)
 {
@@ -83,8 +90,14 @@ void show_plot(const plot_common_params& common_params)
 		write_file(j.dump(4), plot_data_path);
 	// }
 
-	system(go_to_python_dir_command);
-	system(python_plot_command);
+#ifdef PYTHONIC_IS_WINDOWS
+	system(WINDOWS_go_to_python_dir_command);
+	system(WINDOWS_python_plot_command.c_str());
+#elif defined(PYTHONIC_IS_LINUX)
+	system(LINUX_plotting_command.c_str());
+#endif
+
+
 	clear_plot();
 }
 

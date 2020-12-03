@@ -11,7 +11,7 @@ inline void test_enc_detecting(){
 	auto files = lsdir<given_filename_encoding::cp1251>(base_path);
 
 	for(auto& file : files){
-		std::cout << file << " : " << recode::determine_encoding(*read_file(file)) << std::endl;
+		std::cout << file << " : " << recode::determine_encoding(*read_file<given_filename_encoding::cp1251>(file)) << std::endl;
 	}
 }
 
@@ -20,7 +20,7 @@ inline void auto_recode_test(){
 	auto files = lsdir<given_filename_encoding::cp1251>(base_path);
 
 	for(auto& file : files){
-		std::cout << file << " : " << recode::auto_recode(*read_file(file), encoding::utf8) << std::endl;
+		std::cout << file << " : " << recode::auto_recode(*read_file<given_filename_encoding::cp1251>(file), encoding::utf8) << std::endl;
 	}
 }
 
