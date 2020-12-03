@@ -9,25 +9,31 @@
 
 std::vector<double> normal_distribute(const double mu, const double sigma, size_t samples)
 {
-	return distribute <std::normal_distribution<double>, double, double, double >(mu, sigma, samples);
+	return distribute<std::normal_distribution<double>, double, double, double >(mu, sigma, samples);
 }
 
 std::vector<double> uniform_distribute(const double from, const double to, size_t samples)
 {
-	return distribute < std::uniform_real_distribution<double>, double, double, double >(from, to, samples);
+	return distribute<std::uniform_real_distribution<double>, double, double, double>(from, to, samples);
 }
 
 double pythonic_random()
 {
 	auto r = rand();
-	if (r == RAND_MAX) { /* std::cout << "It's equal!" << std::endl; */ r--; }
+	if (r == RAND_MAX) {
+		/* std::cout << "It's equal!" << std::endl; */
+		r--;
+	}
 	return double(r) / RAND_MAX;
 }
 
 double random(std::mt19937 &gen)
 {
 	auto r = gen();
-	if (r == std::mt19937::max()) { /* std::cout << "I`s equal!" << std::endl; */ r--; }
+	if (r == std::mt19937::max()) {
+		/* std::cout << "I`s equal!" << std::endl; */
+		r--;
+	}
 
 	return double(r) / std::mt19937::max(); // RAND_MAX;
 }
