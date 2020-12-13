@@ -41,18 +41,24 @@ double random(std::mt19937& gen);
 double randval(double from, double to);
 double randval(double from, double to, std::mt19937& gen);
 
-template<class T, class E> auto randint(T from, E to) -> decltype(from + to)
+
+/// Generates a random value in [from, to)
+template<class T, class E, class Gen> auto randint(T from, E to, const Gen& random_generator) -> decltype(from + to)
 {
 	using dec = decltype(from + to);
-	if (from == to) return from;
-	return dec(from) + dec((pythonic_random() * (to - from))) % dec(to - from);
+	if (from >= to) return from;
+	auto res = dec(from) + dec((random_generator() * (to - from)));
+	return (res != to) ? (res) : (res - dec(1));
 }
 
-template<class T, class E> auto randint(T from, E to, std::mt19937& gen) -> decltype(from + to)
+template<class T, class E> auto randint(T from, E to)
 {
-	using dec = decltype(from + to);
-	if (from == to) return from;
-	return dec(from) + dec((gen() % (to - from)));
+	return randint(from, to, pythonic_random);
+}
+
+template<class T, class E> auto randint(T from, E to, std::mt19937& gen)
+{
+	return randint(from, to, [&gen](){ return random(gen); });
 }
 
 
