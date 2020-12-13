@@ -32,8 +32,7 @@
 #include <json_and_plot_test.h>
 
 #include <execution>
-
-
+#include <tests/timing_tests/multirun_timer_tests.h>
 
 
 int main()
@@ -101,7 +100,7 @@ int main()
 
 	// simple_test_json();
 	// basic_plot_test();
-	line_plot_test();
+	// line_plot_test();
 	// throwing_function_plotting_test();
 	// throwing_everywhere_function_test();
 
@@ -144,6 +143,7 @@ int main()
 	// test_task_scheduler();
 	// date_test();
 	// easy_measure_test();
+	test_multirun_timer();
 
 	/// Threading:
 	// test_thread_distribution();

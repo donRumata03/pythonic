@@ -56,6 +56,7 @@ using namespace hvn3;
 #include "timing/delayed_launcher.h"
 #include "timing/task_scheduler.h"
 #include "timing/easy_measurer.h"
+#include "timing/multirun_timer.h"
 
 #include "date_library/date.h"
 

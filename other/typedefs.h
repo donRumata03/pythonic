@@ -11,5 +11,5 @@ using pms = std::vector<std::pair<double, double>>;
 
 using uint = unsigned int;
 using lint = long long;
-
+using li = lint;
 
