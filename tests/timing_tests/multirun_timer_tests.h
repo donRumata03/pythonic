@@ -22,10 +22,11 @@ void work_proportional_to(li how_much) {
 inline void test_multirun_timer() {
 	MultirunTimer timer;
 
-	li iterations = 10000;
+	li iterations = 100000;
 	for (li i = 0; i < iterations; ++i) {
 		timer.signal_work_starting();
-		work_proportional_to(i);
+		// work_proportional_to(square(i));
+		work_proportional_to(std::sqrt(i));
 		timer.signal_work_ending();
 	}
 
