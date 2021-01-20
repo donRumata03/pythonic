@@ -43,7 +43,12 @@ std::string join(const std::string& splitter, const T& container) {
 	int counter = 0;
 	for (const auto &i : container)
 	{
-		res += std::to_string(i);
+		if constexpr(not std::is_same_v<std::string, std::decay_t<decltype(i)>>) {
+			res += std::to_string(i);
+		}
+		else {
+			res += i;
+		}
 		if (counter != container.size() - 1) res += splitter;
 		counter++;
 	}

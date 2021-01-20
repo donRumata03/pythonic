@@ -176,7 +176,7 @@ set(PYTHONIC_SOURCES pythonic.h
         threading/static_thread_pool.cpp
         threading/static_thread_pool.h
 
-        timing/multirun_timer.cpp timing/multirun_timer.h tests/timing_tests/multirun_timer_tests.h)
+        timing/multirun_timer.cpp timing/multirun_timer.h tests/timing_tests/multirun_timer_tests.h algorithms/binary_search.h)
 
 foreach(this_source_file ${platform_specific_source_files})
     list(APPEND PYTHONIC_SOURCES ${this_source_file})
