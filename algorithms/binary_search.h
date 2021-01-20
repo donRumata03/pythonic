@@ -39,7 +39,7 @@ std::pair<IndexValueType, IndexValueType> binary_search(const FunctorType& funct
 		}
 	}
 
-	return { r, l };
+	return { l, r };
 }
 
 
@@ -49,7 +49,7 @@ bool binary_search_has_element(const std::vector<T>& sorted_array, const T& elem
 		return (increasing_order) ? (sorted_array[index] >= element) : (sorted_array[index] <= element);
 	}, -1ll, li(sorted_array.size()), 1ll);
 
-	if ((r >= 0) and r < li(sored_array.size()) and sorted_array[r] == element) {
+	if ((r >= 0) and r < li(sorted_array.size()) and sorted_array[r] == element) {
 		return true;
 	}
 	return false;

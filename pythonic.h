@@ -60,3 +60,7 @@ using namespace hvn3;
 
 #include "date_library/date.h"
 
+
+/// Algorithms:
+#include <algorithms/binary_search.h>
+

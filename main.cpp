@@ -33,6 +33,7 @@
 
 #include <execution>
 #include <tests/timing_tests/multirun_timer_tests.h>
+#include <tests/algorithm_tests/bs_tests.h>
 
 
 int main()
@@ -143,11 +144,14 @@ int main()
 	// test_task_scheduler();
 	// date_test();
 	// easy_measure_test();
-	test_multirun_timer();
+	// test_multirun_timer();
 
 	/// Threading:
 	// test_thread_distribution();
 	// test_thread_pool();
+
+	/// Algorithms:
+	bs_has_element_test();
 
 	return 0;
 }
