@@ -44,13 +44,27 @@ std::pair<IndexValueType, IndexValueType> binary_search(const FunctorType& funct
 
 
 template<class T>
-bool binary_search_has_element(const std::vector<T>& sorted_array, const T& element, bool increasing_order = true) {
+std::optional<li> bs_find_element(const std::vector<T>& sorted_array, const T& element, bool increasing_order = true) {
 	auto[l, r] = binary_search([&sorted_array, &element, increasing_order](li index){
 		return (increasing_order) ? (sorted_array[index] >= element) : (sorted_array[index] <= element);
 	}, -1ll, li(sorted_array.size()), 1ll);
 
 	if ((r >= 0) and r < li(sorted_array.size()) and sorted_array[r] == element) {
-		return true;
+		return r;
 	}
-	return false;
+	return {};
+}
+
+
+template<class T>
+bool bs_has_element(const std::vector<T>& sorted_array, const T& element, bool increasing_order = true) {
+//	auto[l, r] = binary_search([&sorted_array, &element, increasing_order](li index){
+//		return (increasing_order) ? (sorted_array[index] >= element) : (sorted_array[index] <= element);
+//	}, -1ll, li(sorted_array.size()), 1ll);
+//
+//	if ((r >= 0) and r < li(sorted_array.size()) and sorted_array[r] == element) {
+//		return true;
+//	}
+//	return false;
+	return bs_find_element(sorted_array, element, increasing_order);
 }

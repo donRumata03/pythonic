@@ -17,6 +17,6 @@ inline void bs_has_element_test()
 	};
 
 	for (auto& element : test_elements) {
-		std::cout << element << " : " << binary_search_has_element(test_array, element) << std::endl;
+		std::cout << element << " : " << bs_has_element(test_array, element) << std::endl;
 	}
 }
