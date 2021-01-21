@@ -60,7 +60,7 @@ int main()
 	// auto_lower_upper_test();
 	// lang_recognition_test();
 
-	// Linux:
+	/// Linux:
 
 	// test_reading_cp1251_file();
     // cp1251_forward_and_back_converting_tests();
@@ -116,6 +116,7 @@ int main()
 	// test_almost_equal();
 	// cut_tests();
 	// test_mult();
+	vector_perpendicularity_test();
 
 
 	/// ND:
@@ -152,7 +153,7 @@ int main()
 
 	/// Algorithms:
 	// bs_has_element_test();
-	bs_root_test();
+	// bs_root_test();
 
 	return 0;
 }
