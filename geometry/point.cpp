@@ -136,7 +136,7 @@ bool are_perpendicular (const point& point1, const point& point2)
 		return true;
 	}
 
-	double modules_product = (point::dist(point1, { 0., 0. }) * point::dist(point2, { 0., 0. });
+	double modules_product = std::sqrt(point1.sqr_module() * point2.sqr_module()); // (point::dist(point1, { 0., 0. }) * point::dist(point2, { 0., 0. });
 
 	return (std::abs(dot_product(point1, point2)) / modules_product) < 1e-7;
 }

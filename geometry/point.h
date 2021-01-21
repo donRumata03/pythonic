@@ -37,8 +37,8 @@ struct point
 	static double sqr_dist(const point& p1, const point& p2) { return square(p1.x - p2.x) + square(p1.y - p2.y); }
 	static double dist(const point& p1, const point& p2) { return sqrt(sqr_dist(p1, p2)); }
 
-	double sqr_module() { return square(x) + square(y); }
-	double module() { return std::sqrt(sqr_module()); }
+	double sqr_module() const { return square(x) + square(y); }
+	double module() const { return std::sqrt(sqr_module()); }
 
 	[[nodiscard]] bool is_zero() const { return x == 0. and y == 0.; }
 
