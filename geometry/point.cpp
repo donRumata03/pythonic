@@ -121,6 +121,32 @@ double squared_abs (const point &point)
 	return square(point.x) + square(point.y);
 }
 
+
+/// Products:
+
+double dot_product (const point& point1, const point& point2)
+{
+	return point1.x * point2.x + point1.y * point2.y;
+}
+
+
+bool are_perpendicular (const point& point1, const point& point2)
+{
+	if(point1.is_zero() || point2.is_zero()) {
+		return true;
+	}
+
+	double modules_product = (point::dist(point1, { 0., 0. }) * point::dist(point2, { 0., 0. });
+
+	return (std::abs(dot_product(point1, point2)) / modules_product) < 1e-7;
+}
+
+
+double cross_product (const point& point1, const point& point2)
+{
+	return point1.x * point2.y - point1.y * point2.x;
+}
+
 ////////////////////////////////////////////////////////////////////////
 
 void to_json (json& j, const point& point)
@@ -134,6 +160,9 @@ void from_json (const json& j, point& point)
 	point.x = j["x"];
 	point.y = j["y"];
 }
+
+
+
 
 
 

@@ -32,7 +32,7 @@ inline double measure_function_execution_time(
 			if (!function_name.empty()) {
 				double time_now = t.get_time(Timer::time_units::milliseconds);
 				double this_iteration_time = (time_now - last_time_point);
-				double average_time = (time_now / (launch_number + 1));
+				double average_time = (time_now / (launch_number + 1.));
 
 				std::cout << "\t" << launch_number + 1 << "\t/\t" << times_of_execution << "\t"
 					<< "Total time: " << time_now << "\t"

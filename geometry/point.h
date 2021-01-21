@@ -37,6 +37,9 @@ struct point
 	static double sqr_dist(const point& p1, const point& p2) { return square(p1.x - p2.x) + square(p1.y - p2.y); }
 	static double dist(const point& p1, const point& p2) { return sqrt(sqr_dist(p1, p2)); }
 
+	double sqr_module() { return square(x) + square(y); }
+	double module() { return std::sqrt(sqr_module()); }
+
 	[[nodiscard]] bool is_zero() const { return x == 0. and y == 0.; }
 
 	point & scale_from (const point &from_what, double scale_factor);
@@ -69,6 +72,13 @@ point operator* (const point& point, double value);
 point operator* (double value, const point& point);
 
 point operator/ (const point& point, double value);
+
+
+double dot_product(const point& point1, const point& point2);
+bool are_perpendicular(const point& point1, const point& point2);
+
+double cross_product(const point& point1, const point& point2);
+
 
 
 
