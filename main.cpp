@@ -151,7 +151,8 @@ int main()
 	// test_thread_pool();
 
 	/// Algorithms:
-	bs_has_element_test();
+	// bs_has_element_test();
+	bs_root_test();
 
 	return 0;
 }
