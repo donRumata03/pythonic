@@ -27,6 +27,6 @@ inline void bs_root_test() {
 	};
 
 	for (auto& num : numbers) {
-		std::cout << "sqrt(" << num << ") ≈ " << bs_find_root_int_part(num) << std::endl;
+		std::cout << "sqrt(" << num << ") = " << bs_find_float_root(double(num), 1e-10) << " ≈ " << bs_find_root_int_part(num) << std::endl;
 	}
 }
