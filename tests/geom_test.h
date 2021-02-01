@@ -45,3 +45,19 @@ inline void point_scaling_test() {
 	std::cout << point{1, 1}.scale_x_from(0, 2).scale_y_from(1, 2) << std::endl;
 	std::cout << point{1, 1}.scale_x_from(2, 2).scale_y_from(2, 2) << std::endl;
 }
+
+inline void vector_perpendicularity_test() {
+	std::vector<std::pair<point, point>> tests = {
+			{ { 1., 1. }, { 1., -1. } },
+			{ { 1., 1. }, { 1., 1. } },
+			{ { 1., 1. }, { -1., 1. } },
+			{ { 1., 1. }, { -1., -1. } },
+			{ { 1., 100. }, { 100., 1. } },
+			{ { 0., 100. }, { 100., 0. } },
+			{ { 0., 100. }, { 100., 1e-6 } },
+	};
+
+	for(auto& test : tests) {
+		std::cout << test << " : " << std::boolalpha << are_perpendicular(test.first, test.second) << std::endl;
+	}
+}

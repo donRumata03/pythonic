@@ -33,6 +33,7 @@
 
 #include <execution>
 #include <tests/timing_tests/multirun_timer_tests.h>
+#include <tests/algorithm_tests/bs_tests.h>
 
 
 int main()
@@ -60,7 +61,7 @@ int main()
 	// auto_lower_upper_test();
 	// lang_recognition_test();
 
-	// Linux:
+	/// Linux:
 
 	// test_reading_cp1251_file();
     // cp1251_forward_and_back_converting_tests();
@@ -116,6 +117,7 @@ int main()
 	// test_almost_equal();
 	// cut_tests();
 	// test_mult();
+	vector_perpendicularity_test();
 
 
 	/// ND:
@@ -144,11 +146,15 @@ int main()
 	// test_task_scheduler();
 	// date_test();
 	// easy_measure_test();
-	test_multirun_timer();
+	// test_multirun_timer();
 
 	/// Threading:
 	// test_thread_distribution();
 	// test_thread_pool();
+
+	/// Algorithms:
+	// bs_has_element_test();
+	// bs_root_test();
 
 	return 0;
 }
