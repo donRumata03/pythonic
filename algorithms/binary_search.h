@@ -70,7 +70,7 @@ bool bs_has_element(const std::vector<T>& sorted_array, const T& element, bool i
 }
 
 
-li bs_find_root_int_part(li number) {
+inline li bs_find_root_int_part(li number) {
 	assert(number >= 0);
 
 	auto[l, r] = binary_search([&number](li value){ return value * value > number; }, 0ll, number + 1, 1ll);
@@ -78,7 +78,7 @@ li bs_find_root_int_part(li number) {
 	return l;
 }
 
-double bs_find_float_root(double number, double eps) {
+inline double bs_find_float_root(double number, double eps) {
 	assert(number >= 0);
 
 	auto [l, r] = binary_search([&number](double root_candidate){ return square(root_candidate) > number; }, 0., number * 2, eps);
