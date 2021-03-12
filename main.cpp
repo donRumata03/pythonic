@@ -44,6 +44,7 @@ int main()
 	// system("chcp 65001");
     set_utf8_in_console();
     std::cout << pythonic_base_dir << std::endl;
+	std::cout << pythonic_pch_file_path << std::endl;
 
 
 	/// Encoding
