@@ -34,6 +34,12 @@ point &point::scale_y_from (double from, double scale_factor)
 
 //////////// Element-wise operators: //////////////////
 
+point operator- (const point& point)
+{
+	return { -point.x, -point.y };
+}
+
+
 point operator+ (const point &first, const point &second)
 {
 	return point { first.x + second.x, first.y + second.y };
