@@ -37,7 +37,7 @@ template<class T, class E> bool is_in(const T& target, E&& container) {
 
 /// «Starts with» and «Ends with» functions:
 
-bool starts_with(const std::string& checking_string, const std::string& possible_prefix) {
+inline bool starts_with(const std::string& checking_string, const std::string& possible_prefix) {
 	if (possible_prefix.size() > checking_string.size()) return false;
 
 	for (size_t i = 0; i < possible_prefix.size(); ++i) {
@@ -47,7 +47,7 @@ bool starts_with(const std::string& checking_string, const std::string& possible
 	return true;
 }
 
-bool ends_with(const std::string& checking_string, const std::string& possible_suffix) {
+inline bool ends_with(const std::string& checking_string, const std::string& possible_suffix) {
 	if (possible_suffix.size() > checking_string.size()) return false;
 
 	for (size_t suff_index = 0; suff_index < possible_suffix.size(); ++suff_index) {

@@ -117,7 +117,8 @@ int main()
 	// test_almost_equal();
 	// cut_tests();
 	// test_mult();
-	vector_perpendicularity_test();
+	// vector_perpendicularity_test();
+	test_starts_with_ends_with();
 
 
 	/// ND:

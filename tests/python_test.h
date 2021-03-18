@@ -78,3 +78,31 @@ inline void test_almost_equal() {
 
 	std::cout << 0    << " " << 0            << " " << almost_equal(0., 0.) << std::endl;
 }
+
+
+inline void test_starts_with_ends_with() {
+	std::string testing_string = "bananabanana";
+
+	auto starts_test = [&](auto str) {
+		std::cout << testing_string << ".starts_with(" << str << ") = " << starts_with(testing_string, str) << std::endl;
+	};
+
+	auto ends_test = [&](auto str) {
+		std::cout << testing_string << ".ends_with(" << str << ") = " << ends_with(testing_string, str) << std::endl;
+	};
+
+	starts_test("bananabanana");
+	starts_test("ban");
+	starts_test("b");
+	starts_test("");
+	starts_test("bna");
+	starts_test("ana");
+
+	std::cout << "____________________________________________________________" << std::endl;
+
+	ends_test("bananabanana");
+	ends_test("ana");
+	ends_test("a");
+	ends_test("");
+	ends_test("ban");
+}
