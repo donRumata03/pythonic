@@ -135,3 +135,20 @@ double weighted_average(const std::vector<std::pair<double, double>>& data)
 }
 
 ////////////////////////
+
+
+/// Economics-like stuff:
+
+double count_Gini_index (const std::vector<double>& values)
+{
+	double abs_total_difference = 0;
+
+	for (const auto& item : values) {
+		for (const auto& other_item : values) {
+			abs_total_difference += std::abs(item - other_item);
+		}
+	}
+
+	return abs_total_difference / (2. * values.size() * sum(values));
+}
+

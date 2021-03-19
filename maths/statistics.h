@@ -304,4 +304,9 @@ inline double count_graph_area(const std::vector<std::pair<double, double>>& gra
 	return S;
 }
 
-inline void normalize(std::vector<std::pair<double, double>>& graph, const double target_area = 1);
+inline void normalize(std::vector<std::pair<double, double>>& graph, double target_area = 1);
+
+
+/// Economics-like stuff:
+
+double count_Gini_index(const std::vector<double>& values);
