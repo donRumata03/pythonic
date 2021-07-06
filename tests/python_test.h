@@ -97,6 +97,8 @@ inline void test_starts_with_ends_with() {
 	starts_test("");
 	starts_test("bna");
 	starts_test("ana");
+	starts_test("bananabananai");
+	starts_test("ibananabanana");
 
 	std::cout << "____________________________________________________________" << std::endl;
 
@@ -105,4 +107,6 @@ inline void test_starts_with_ends_with() {
 	ends_test("a");
 	ends_test("");
 	ends_test("ban");
+	ends_test("ibananabanana");
+	ends_test("bananabananai");
 }
