@@ -29,6 +29,7 @@ using namespace hvn3;
 #include "displaying/print_stl.h"
 #include "displaying/colored_printing.h"
 #include "displaying/type_printer.h"
+#include "displaying/printing_utils.h"
 
 
 #include "plotting/plotter.h"
