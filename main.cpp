@@ -34,6 +34,7 @@
 #include <execution>
 #include <tests/timing_tests/multirun_timer_tests.h>
 #include <tests/algorithm_tests/bs_tests.h>
+#include <displaying/printing_utils.h>
 
 
 int main()
@@ -96,7 +97,7 @@ int main()
 	// print_stl_operator_test();
 	// print_mul_args_test();
 	// byte_printing_test();
-
+	display_delimiter();
 
 	/// Json + plotting
 
@@ -118,7 +119,7 @@ int main()
 	// cut_tests();
 	// test_mult();
 	// vector_perpendicularity_test();
-	test_starts_with_ends_with();
+	// test_starts_with_ends_with();
 
 
 	/// ND:
