@@ -116,7 +116,9 @@ inline void print_mul_args_test(){
 	// print(10, "100", std::cout);
 }
 
-
+inline void strikethrough_test() {
+	std::cout << strike_text_through("Striken") << " string" << std::endl;
+}
 
 
 

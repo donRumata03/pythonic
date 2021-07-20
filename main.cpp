@@ -97,7 +97,8 @@ int main()
 	// print_stl_operator_test();
 	// print_mul_args_test();
 	// byte_printing_test();
-	display_delimiter();
+	// display_delimiter();
+	strikethrough_test();
 
 	/// Json + plotting
 
