@@ -33,3 +33,12 @@ inline std::string get_path_folder(const char* child_filename) {
 	return res;
 }
 
+inline fs::path safe_get_parent(const fs::path& child) {
+	auto res = child.parent_path();
+
+	if (std::string{res.string().back()} == "."s) {
+		res = res.parent_path();
+	}
+
+	return res;
+}
