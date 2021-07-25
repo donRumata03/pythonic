@@ -157,8 +157,8 @@ int main()
 	// test_thread_pool();
 
 	/// Math:
-	// test_averages();
-	test_n_atic_means_for_same_numbers();
+	test_averages();
+	// test_n_atic_means_for_same_numbers();
 
 	/// Algorithms:
 	// bs_has_element_test();

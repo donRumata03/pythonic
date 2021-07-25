@@ -8,7 +8,7 @@
 
 inline void test_averages() {
 	std::vector<double> ms = {
-			6, 13, 14, 4, 10, 9, 12, 8
+			3.4155, 3.40202, 3.41788, 3.41788, 3.41788, 3.41645, 3.41788, 3.41788, 3.40239, 3.41788
 	};
 
 	std::cout << "A: " << count_average(ms) << std::endl;
