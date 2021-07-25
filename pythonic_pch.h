@@ -4,6 +4,9 @@
 
 #pragma once
 
+// REMOVE F*CKING MACROS!
+#define NOMINMAX
+
 // Determine platform:
 #ifdef _WIN32
     #define PYTHONIC_IS_WINDOWS

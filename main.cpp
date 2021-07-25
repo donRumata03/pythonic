@@ -35,6 +35,7 @@
 #include <tests/timing_tests/multirun_timer_tests.h>
 #include <tests/algorithm_tests/bs_tests.h>
 #include <displaying/printing_utils.h>
+#include <math_tests/averagers_tests.h>
 
 
 int main()
@@ -44,8 +45,8 @@ int main()
 
 	// system("chcp 65001");
     set_utf8_in_console();
-    std::cout << pythonic_base_dir << std::endl;
-	std::cout << pythonic_pch_file_path << std::endl;
+    std::cout << "Pythonic root directory: " << pythonic_base_dir << std::endl;
+	// std::cout << pythonic_pch_file_path << std::endl;
 
 
 	/// Encoding
@@ -98,7 +99,7 @@ int main()
 	// print_mul_args_test();
 	// byte_printing_test();
 	// display_delimiter();
-	strikethrough_test();
+	// strikethrough_test();
 
 	/// Json + plotting
 
@@ -154,6 +155,10 @@ int main()
 	/// Threading:
 	// test_thread_distribution();
 	// test_thread_pool();
+
+	/// Math:
+	// test_averages();
+	test_n_atic_means_for_same_numbers();
 
 	/// Algorithms:
 	// bs_has_element_test();

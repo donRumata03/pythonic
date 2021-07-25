@@ -258,7 +258,7 @@ set(pythonic_test_SOURCES
 
 
         tests/geom_test.h
-        tests/algorithm_tests/bs_tests.h)
+        tests/algorithm_tests/bs_tests.h tests/math_tests/averagers_tests.h)
 
 #################
 
