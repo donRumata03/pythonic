@@ -85,7 +85,7 @@ double quadratic_mean(const std::vector<double>& numbers)
 {
 	double sm = 0;
 	for (double val : numbers) sm += sgn(val) * val * val;
-	return sgn(sm) * sqrt(abs(sm / numbers.size()));
+	return sgn(sm) * sqrt(std::abs(sm / numbers.size()));
 }
 
 
@@ -112,7 +112,7 @@ double weighted_average(const std::vector<double> &ms, const std::vector<double>
 
 double sign_safe_pow(double X, double Y)
 {
-	return sgn(X) * pow(abs(X), Y);
+	return sgn(X) * pow(std::abs(X), Y);
 }
 
 void normalize(std::vector<std::pair<double, double>> &graph, const double target_area)

@@ -42,7 +42,7 @@ inline void throwing_function_plotting_test(){
 	add_function_to_plot(
 			[] (double x) -> double {
 				if (x > -1 && x < 1) { throw std::range_error(""); }
-				return sqrt(abs(x) - 1);
+				return sqrt(std::abs(x) - 1);
 			},
 			{ "test_name" }, { double(-2), double(2), size_t(100000) }, true);
 
