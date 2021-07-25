@@ -34,8 +34,8 @@ OutputStringType recode_base(const InputStringType& input_string, const char* fr
     char* pointer_to_write_output = reinterpret_cast<char*>(res.data());
     size_t out_max_size_bytes = res.size() * output_char_size;
 
-    std::cout << "InputSizeBytes: " << input_size_bytes << std::endl;
-    std::cout << "OutMaxSizeBytes: " << out_max_size_bytes << std::endl;
+    // std::cout << "InputSizeBytes: " << input_size_bytes << std::endl;
+    // std::cout << "OutMaxSizeBytes: " << out_max_size_bytes << std::endl;
 
     size_t code = iconv(converter,
                         &pointer_to_input, &input_size_bytes,
@@ -43,7 +43,7 @@ OutputStringType recode_base(const InputStringType& input_string, const char* fr
 
     iconv_close(converter);
 
-    std::cout << "Res code is: " << code << std::endl;
+    // std::cout << "Res code is: " << code << std::endl;
 
     res.erase(res.begin() + std::min(res.size(),  res.find_first_of('\0')), res.end());
     res.shrink_to_fit();
